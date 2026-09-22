@@ -1,0 +1,44 @@
+[
+  {
+    "file": "Q1.png",
+    "caption": "表1  第一轮成果质量",
+    "source": "分维度比较 A1:H10",
+    "sha256": "cf89a7cd9a7c6d2dc3d7e8a274d103c0fe83ba1c7dfb5629628f1d205d5eead3"
+  },
+  {
+    "file": "R1.png",
+    "caption": "表2  第一轮过程可靠性",
+    "source": "分维度比较 A25:H34",
+    "sha256": "5082cfbfde4e3663db39c5c43019aecc7e1d37737a486311daf33c3fd4490ab2"
+  },
+  {
+    "file": "Q2.png",
+    "caption": "表3  第二轮成果质量",
+    "source": "分维度比较 A13:H22",
+    "sha256": "3e8ea4088b1064b5c916be5fd394d254b610b5e17410347a7a3061e4edac0db5"
+  },
+  {
+    "file": "R2.png",
+    "caption": "表4  第二轮过程可靠性",
+    "source": "分维度比较 A37:H46",
+    "sha256": "82576c6cbfd14976b5daeb69afff0a5148b5765b486bddf56ae3533301f6d574"
+  },
+  {
+    "file": "分项增量.png",
+    "caption": "表5  五个配对系统的分项增量与封顶调整",
+    "source": "评测总览 B29:N38",
+    "sha256": "97dba404663bb8553ac331ece261fe1f3941f2f73d43962242605882f3bc28cf"
+  },
+  {
+    "file": "总览-第二轮.png",
+    "caption": "表6  第二轮交付与资源指标",
+    "source": "评测总览 B8:N16 第二轮",
+    "sha256": "df0fd8d0f16ac734ab1a295400f92327ca4a5cf8b3a3e5cb5a73b2f6ec7e40c0"
+  },
+  {
+    "file": "运行条件.png",
+    "caption": "表7  模型、思考强度与Harness",
+    "source": "字段说明 H1:L14",
+    "sha256": "879d01e4022b52ed06abcaa965c3047a8c9e88898279f16b82ef288bbc82d661"
+  }
+]

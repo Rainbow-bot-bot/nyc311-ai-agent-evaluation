@@ -1,0 +1,37 @@
+[
+  {
+    "ai": "GPT",
+    "range": "A1:M25",
+    "file": "GPT细项.png"
+  },
+  {
+    "ai": "Grok",
+    "range": "A29:M53",
+    "file": "Grok细项.png"
+  },
+  {
+    "ai": "DeepSeek",
+    "range": "A57:M81",
+    "file": "DeepSeek细项.png"
+  },
+  {
+    "ai": "GLM",
+    "range": "A85:M109",
+    "file": "GLM细项.png"
+  },
+  {
+    "ai": "Qwen",
+    "range": "A113:M137",
+    "file": "Qwen细项.png"
+  },
+  {
+    "ai": "Gemini",
+    "range": "A141:M165",
+    "file": "Gemini细项.png"
+  },
+  {
+    "ai": "Claude",
+    "range": "A169:M193",
+    "file": "Claude细项.png"
+  }
+]

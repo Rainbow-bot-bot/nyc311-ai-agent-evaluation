@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>项目2 · 证据查证</title>
+<style>
+body{max-width:1100px;margin:36px auto;font:16px/1.7 system-ui;padding:0 20px;color:#233044}
+a{color:#1267af}input{width:min(760px,72%);padding:10px}button{padding:10px 16px}
+table{width:100%;border-collapse:collapse}td{padding:8px;border-bottom:1px solid #dde3ea;vertical-align:top}
+td:first-child{width:190px;font-weight:600}.panel{background:#f7f9fb;border:1px solid #dde5ec;padding:16px;border-radius:8px}
+</style>
+<p><a href="开始阅读.html">← 返回首页</a></p>
+<h1>证据查证</h1>
+<p>输入 Excel 中的证据编号。</p>
+<div class="panel"><input id="key" placeholder="例如 CHK:CLAUDE:ONEADDR"><button id="go">查证</button><p id="status"></p><div id="result"></div></div>
+<script src="查证数据.js"></script>
+<script>
+const data=window.PROJECT2_EVIDENCE||{};
+function render(value,node){
+ if(value&&typeof value==='object'){
+  let table=document.createElement('table');
+  for(let [k,v] of Object.entries(value)){
+   let row=table.insertRow(),a=row.insertCell(),b=row.insertCell();
+   a.textContent=k;
+   if(v&&typeof v==='object'){
+    let d=document.createElement('details'),s=document.createElement('summary');
+    s.textContent='展开';d.append(s);render(v,d);b.append(d);
+   }else b.textContent=v===null?'—':String(v);
+  }
+  node.append(table);
+ }else node.textContent=value===null?'—':String(value);
+}
+function show(){
+ let k=document.getElementById('key').value.trim(),value=data[k];
+ document.getElementById('status').textContent=value?k:'未找到';
+ let node=document.getElementById('result');node.replaceChildren();
+ if(value)render(value,node);
+}
+document.getElementById('go').onclick=show;
+function fromhash(){
+ if(location.hash){
+  document.getElementById('key').value=decodeURIComponent(location.hash.slice(1));
+  show();
+ }
+}
+window.onhashchange=fromhash;fromhash();
+</script>
+</html>

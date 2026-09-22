@@ -1,0 +1,6 @@
+# Preserve reviewed artifacts and original submissions byte for byte.
+* -text
+*.pdf binary
+*.xlsx binary
+*.docx binary
+*.png binary

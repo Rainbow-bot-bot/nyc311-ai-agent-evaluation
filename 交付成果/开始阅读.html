@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>项目2 · AI数据分析Agent自主交付评测</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#f3f6fa;color:#243b53;font:16px/1.75 "Microsoft YaHei",system-ui,sans-serif}main{max-width:1120px;margin:38px auto;padding:0 28px 48px}h1{font-size:30px;margin:0}h2{font-size:21px;margin:30px 0 12px}p{margin:8px 0;color:#526578}a{color:#1267af;text-decoration:none}a:hover{text-decoration:underline}.page-nav{display:flex;gap:18px;flex-wrap:wrap;margin:20px 0 14px;padding-bottom:12px;border-bottom:1px solid #dbe4ec}.page-nav a{font-weight:600}.file-panel{background:#fff;border:1px solid #dde5ec;border-radius:9px;padding:16px 18px;margin:14px 0 22px}.file-title{font-weight:700}.file-links{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 6px}.file-links a{padding:8px 12px;border:1px solid #d9e3ec;border-radius:6px;background:#fff}.file-hint,.muted{font-size:13px;color:#748596}.panel{background:#fff;border:1px solid #dde5ec;border-radius:9px;padding:22px;margin:18px 0}table{border-collapse:collapse;width:100%;font-size:14px}th{text-align:left;background:#edf3f8}td,th{padding:11px;vertical-align:top;border-bottom:1px solid #e3e9ef}td:first-child{font-weight:600}.tag{display:inline-block;padding:2px 8px;border-radius:12px;background:#eaf2f8;color:#245f8f;font-size:12px;margin-right:5px}code{font-size:13px;overflow-wrap:anywhere}@media(max-width:700px){main{padding:0 14px}.panel{padding:12px}table{font-size:12px}td,th{padding:7px}}
+</style>
+<main>
+<h1>项目2｜AI 数据分析 Agent 自主交付评测</h1>
+<p>个人使用AI完成NYC311数据分析的两轮评测，比较分析质量、费用、耗时，以及续跑、接管和修正工作。</p>
+
+<nav class="page-nav">
+<a href="#report">Excel 报表</a>
+<a href="#purpose">评测内容</a>
+<a href="#samples">原始交付</a>
+<a href="#reproduce">复现</a>
+</nav>
+
+<div class="file-panel">
+<div class="file-title">交付文件</div>
+<div class="file-links">
+<a href="项目2_AI评测分析.xlsx">主 Excel</a>
+<a href="项目2_研究报告_概览.pdf">概览 PDF（7页）</a>
+<a href="项目2_研究报告.pdf">完整 PDF 报告</a>
+<a href="项目2_AI数据分析Agent自主交付评测报告.docx">Word 报告</a>
+<a href="项目2_自主交付研究报告.md">Markdown 报告</a>
+<a href="查证.html">证据查证</a>
+</div>
+<p>本次复审：GPT第二轮Q为100；Qwen分项90、封顶59；Gemini第二轮未通过Gate，仅作观察。五系统最终Q均值增加0.6分。</p>
+<p class="file-hint">Excel、Word 文件由本机应用打开。</p>
+</div>
+
+<section class="panel" id="report">
+<h2 style="margin-top:0">Excel 报表</h2>
+<table>
+<thead><tr><th>工作表</th><th>用途</th></tr></thead>
+<tbody>
+<tr><td>评测总览</td><td>按轮次查看Q/R、耗时、API目录价、AWR与两轮变化；五个系统配对汇总，Gemini第二轮及Claude、Kimi单列；下方展示分项变化与封顶调整</td></tr>
+<tr><td>单AI分析</td><td>选择 AI 和轮次，查看分项得分、Token/动作构成与单个 AI 两轮变化</td></tr>
+<tr><td>分维度比较</td><td>两轮Q/R、八个AI各维度得分；完整细项见“评分细项”</td></tr>
+<tr><td>运行记录 / 评分与用量 / API计价 / 行为记录 / 核验记录</td><td>报表底表</td></tr>
+<tr><td>字段说明</td><td>字段含义、允许值、空值规则；右侧列明模型、思考强度与Harness</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="panel" id="purpose">
+<h2 style="margin-top:0">评测内容</h2>
+<table>
+<thead><tr><th>维度</th><th>内容</th></tr></thead>
+<tbody>
+<tr><td>成果质量 Q</td><td>数据理解、计算口径、调查深度、证据链、最终 Excel</td></tr>
+<tr><td>过程可靠性 R</td><td>路线控制、自我纠错、最终文件核验</td></tr>
+<tr><td>人工接手负担</td><td>追加提示、混合接管、首交修正任务</td></tr>
+<tr><td>投入价值</td><td>时间、Token、API目录价、AWR、返工</td></tr>
+</tbody>
+</table>
+<p class="muted">Q、R 满分均为 100。第二轮加入 Evidence-led 方法提示；Grok、Gemini 另有方法清单。</p>
+</section>
+
+<section class="panel" id="samples">
+<h2 style="margin-top:0">第二轮原始交付</h2>
+<table>
+<thead><tr><th>系统</th><th>文件</th><th>样本</th></tr></thead>
+<tbody>
+<tr><td>GPT / Codex</td><td><a href="../GPT/第二轮/最终成果.xlsx">最终成果.xlsx</a> · <a href="../GPT/第二轮/分析说明.md">分析说明</a></td><td>主要对照</td></tr>
+<tr><td>Grok / Cursor</td><td><a href="../Grok/第二轮/最终成果.xlsx">最终成果.xlsx</a> · <a href="../Grok/第二轮/分析说明.md">分析说明</a></td><td>主要对照</td></tr>
+<tr><td>DeepSeek / Claude Code</td><td><a href="../DeepSeek/第二轮/最终成果.xlsx">最终成果.xlsx</a> · <a href="../DeepSeek/第二轮/分析说明.md">分析说明</a></td><td>主要对照</td></tr>
+<tr><td>GLM / Claude Code</td><td><a href="../GLM/第二轮/最终成果.xlsx">最终成果.xlsx</a> · <a href="../GLM/第二轮/分析说明.md">分析说明</a></td><td>主要对照</td></tr>
+<tr><td>Qwen / Claude Code</td><td><a href="../Qwen/第二轮/最终成果.xlsx">最终成果.xlsx</a> · <a href="../Qwen/第二轮/分析说明.md">分析说明</a></td><td>主要对照</td></tr>
+<tr><td>Gemini / Antigravity</td><td><a href="../Gemini/第二轮/最终成果.xlsx">原始最终成果.xlsx</a> · <a href="../Gemini/第二轮/最终成果_阅读版.xlsx">阅读版.xlsx</a> · <a href="../Gemini/第二轮/分析说明.md">分析说明</a></td><td>观察记录</td></tr>
+</tbody>
+</table>
+<p class="muted">Gemini 的评分依据为“原始最终成果.xlsx”（7 张表）。“阅读版.xlsx”保留其中 6 张表，不含“06_空间分布与响应执法”，评分仍以原始文件为准。Claude 第一轮因Cursor宿主额度限制由Grok收尾，混合成品Q=81，独立R留空；第二轮无独立运行。Kimi 第一轮提前结束后退出，第二轮因重复读取循环终止，两轮均无完整成品。</p>
+</section>
+
+<section class="panel" id="reproduce">
+<h2 style="margin-top:0">复现</h2>
+<p><code>benchmark.sqlite → 评测数据处理.py → 生成分析表.py → 项目2_AI评测分析.xlsx</code></p>
+<p><a href="01_评测数据整理与验收.ipynb">Notebook</a> · <a href="../资料/复现说明.md">复现说明</a> · <a href="../资料/数据采集方案.md">数据采集方案</a> · <a href="../资料/评判标准.md">评判标准</a></p>
+</section>
+</main>
+</html>

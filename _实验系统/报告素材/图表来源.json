@@ -1,0 +1,146 @@
+[
+  {
+    "file": "运行条件.png",
+    "caption": "表1  模型、思考强度与Harness",
+    "source": "字段说明 H1:L14",
+    "sha256": "879d01e4022b52ed06abcaa965c3047a8c9e88898279f16b82ef288bbc82d661"
+  },
+  {
+    "file": "GPT维度.png",
+    "caption": "表2  GPT两轮维度得分",
+    "source": "分维度比较 A51:E62",
+    "sha256": "424187979ee7477639ab59ec516093a4a97b019c2b4e04db454bfe9ddc8f448c"
+  },
+  {
+    "file": "Grok维度.png",
+    "caption": "表3  Grok两轮维度得分",
+    "source": "分维度比较 A65:E76",
+    "sha256": "9d875e406045b09310e9d5856c5e932353400f64ce6776fbd6ee969a59c91218"
+  },
+  {
+    "file": "DeepSeek维度.png",
+    "caption": "表4  DeepSeek两轮维度得分",
+    "source": "分维度比较 A79:E90",
+    "sha256": "0d68cddf40aa92e6fa782c77dabf0eafbd546e1877c5413fe7692933f537ab33"
+  },
+  {
+    "file": "GLM维度.png",
+    "caption": "表5  GLM两轮维度得分",
+    "source": "分维度比较 A93:E104",
+    "sha256": "f04cdf350007c4ab7835af3be0163b501da33c2a8d53580f8985785a8450318e"
+  },
+  {
+    "file": "Qwen维度.png",
+    "caption": "表6  Qwen两轮维度得分",
+    "source": "分维度比较 A107:E119",
+    "sha256": "c15eab42531baa423930f8ae73a7211a8b4b684905f34e83d0bbd52bf9a18559"
+  },
+  {
+    "file": "Gemini维度.png",
+    "caption": "表7  Gemini两轮维度得分",
+    "source": "分维度比较 A121:E133",
+    "sha256": "0b991546498555f2f936af77e7e259986e579a86c13b07a2e227f99c867854fc"
+  },
+  {
+    "file": "Claude维度.png",
+    "caption": "表8  Claude第一轮混合成品维度得分",
+    "source": "分维度比较 A135:E147",
+    "sha256": "0402c2de149d0262b1dee650f39bf717062593f21fec97533a434ff4e2e6d8aa"
+  },
+  {
+    "file": "Q1.png",
+    "caption": "表9  第一轮成果质量分项",
+    "source": "分维度比较 A1:H10",
+    "sha256": "cf89a7cd9a7c6d2dc3d7e8a274d103c0fe83ba1c7dfb5629628f1d205d5eead3"
+  },
+  {
+    "file": "Q2.png",
+    "caption": "表10  第二轮成果质量分项",
+    "source": "分维度比较 A13:H22",
+    "sha256": "3e8ea4088b1064b5c916be5fd394d254b610b5e17410347a7a3061e4edac0db5"
+  },
+  {
+    "file": "R1.png",
+    "caption": "表11  第一轮过程可靠性分项",
+    "source": "分维度比较 A25:H34",
+    "sha256": "5082cfbfde4e3663db39c5c43019aecc7e1d37737a486311daf33c3fd4490ab2"
+  },
+  {
+    "file": "R2.png",
+    "caption": "表12  第二轮过程可靠性分项",
+    "source": "分维度比较 A37:H46",
+    "sha256": "82576c6cbfd14976b5daeb69afff0a5148b5765b486bddf56ae3533301f6d574"
+  },
+  {
+    "file": "分项增量.png",
+    "caption": "表13  五个配对系统的分项变化与封顶调整",
+    "source": "评测总览 B29:N38",
+    "sha256": "97dba404663bb8553ac331ece261fe1f3941f2f73d43962242605882f3bc28cf"
+  },
+  {
+    "file": "总览-第二轮.png",
+    "caption": "表14  第二轮交付与资源指标",
+    "source": "评测总览 B8:N16；第二轮",
+    "sha256": "df0fd8d0f16ac734ab1a295400f92327ca4a5cf8b3a3e5cb5a73b2f6ec7e40c0"
+  },
+  {
+    "file": "总览图2.png",
+    "caption": "图1  第二轮原生耗时",
+    "source": "评测总览 图表2；第二轮",
+    "sha256": "736dfa8cbc8b3cb45a4fff808a24c55e4d70ee44b02f9325ada98d68fae95b42"
+  },
+  {
+    "file": "总览图3.png",
+    "caption": "图2  第二轮API目录价低档",
+    "source": "评测总览 图表3；第二轮",
+    "sha256": "fd16bd0af3bbe4f4c71af096385b392f54cfc4f34010f6f3aa38a61c1946700a"
+  },
+  {
+    "file": "总览图4.png",
+    "caption": "图3  第二轮无收益动作占比",
+    "source": "评测总览 图表4；第二轮",
+    "sha256": "e910f58cfd4652bf606dc0eb17a8142af1c516cf66e8568b333751fbd0d8eb1f"
+  },
+  {
+    "file": "GPT细项.png",
+    "caption": "表15  GPT完整细项得分",
+    "source": "评分细项 A1:M25",
+    "sha256": "88b24318ae7fcfb0b6622eee6b4992f89fe8b2d6a6a4fce3f0adcc9de69b5f1d"
+  },
+  {
+    "file": "Grok细项.png",
+    "caption": "表16  Grok完整细项得分",
+    "source": "评分细项 A29:M53",
+    "sha256": "cb2d624fe91f17a0d3f4e10ef1335c0372619aea52b502765fa2a0e625566105"
+  },
+  {
+    "file": "DeepSeek细项.png",
+    "caption": "表17  DeepSeek完整细项得分",
+    "source": "评分细项 A57:M81",
+    "sha256": "f6dbc0b95ed676ffbda7d6849a953ba30323a004d7d47a5ab58a3a8e27412bbc"
+  },
+  {
+    "file": "GLM细项.png",
+    "caption": "表18  GLM完整细项得分",
+    "source": "评分细项 A85:M109",
+    "sha256": "09ba5dcd208d7f995c28a41959ac3ea3767049738ed31cce1058a298619eac5a"
+  },
+  {
+    "file": "Qwen细项.png",
+    "caption": "表19  Qwen完整细项得分",
+    "source": "评分细项 A113:M137",
+    "sha256": "68fb4727a520a3b2370400275322ba2130807c5f673d6a4ac1930bb9b71eac79"
+  },
+  {
+    "file": "Gemini细项.png",
+    "caption": "表20  Gemini完整细项得分",
+    "source": "评分细项 A141:M165",
+    "sha256": "4ef537ae31b358ecc1e960a8de7a972ffffad485af2cdb7b0bfcd3d2875e5074"
+  },
+  {
+    "file": "Claude细项.png",
+    "caption": "表21  Claude完整细项得分",
+    "source": "评分细项 A169:M193",
+    "sha256": "b8a9286d4b47a47e26a6746542b0722216aed71dac263909cdbdebbb05a0d009"
+  }
+]
