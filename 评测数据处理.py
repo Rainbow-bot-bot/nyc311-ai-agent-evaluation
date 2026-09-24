@@ -86,10 +86,37 @@ def load_evidence(path=None):
     return json.loads(payload.split("=", 1)[1].rstrip(";\n\r "))
 
 
+def validate_issue_references(evidence, scores):
+    """外部问题须先登记证据，关联评分或编号元数据本身不算证据。"""
+    metadata = {"现行S关联评分", "来源", "原库表", "主键", "现行评分版本", "现行S说明"}
+
+    def has_content(value):
+        if isinstance(value, dict):
+            return any(has_content(v) for v in value.values())
+        if isinstance(value, (list, tuple)):
+            return any(has_content(v) for v in value)
+        return bool(value.strip()) if isinstance(value, str) else value is not None
+
+    for key, score in scores.items():
+        issue = score["关联问题编号"]
+        if issue in scores:
+            continue
+        record = evidence.get(issue)
+        valid = isinstance(record, dict) and any(
+            has_content(v) for k, v in record.items() if k not in metadata)
+        if valid and "问题记录" in record:
+            problem = record["问题记录"]
+            valid = isinstance(problem, dict) and all(
+                has_content(problem.get(field)) for field in ("核验发现", "来源"))
+        if not valid:
+            raise ValueError(f"{key} 关联问题 {issue} 未登记有效证据；请先登记问题事实与出处，再同步评分")
+
+
 def merge_current_scores(evidence, scores):
     """更新评分编号及共享问题编号下的评分，保留原始问题证据。"""
     from copy import deepcopy
     from collections import defaultdict
+    validate_issue_references(evidence, scores)
     merged = deepcopy(evidence)
     for value in merged.values():
         value.pop("现行S关联评分", None)
@@ -99,7 +126,7 @@ def merge_current_scores(evidence, scores):
         grouped[value["关联问题编号"]].append(value["评分原文"])
     for issue, items in grouped.items():
         if issue not in scores:
-            merged.setdefault(issue, {})["现行S关联评分"] = items
+            merged[issue]["现行S关联评分"] = items
     return merged
 
 
@@ -107,6 +134,7 @@ def verify_current_scores(evidence=None, scores=None):
     """按325个评分编号逐字段核对分值与依据，不重新评定分数。"""
     scores = scores if scores is not None else read_current_scores()
     evidence = evidence if evidence is not None else load_evidence()
+    validate_issue_references(evidence, scores)
     actual_keys = {k for k, v in evidence.items() if v.get("现行评分版本") == "S v2.2"}
     if actual_keys != set(scores):
         raise ValueError("查证页的现行评分编号集合与Excel不一致")
@@ -149,7 +177,10 @@ def retain_current_assessment(evidence):
         if value.get("现行评分版本") == "S v2.2":
             evidence[key] = value
         elif "现行S关联评分" in value:
-            evidence.setdefault(key, {})["现行S关联评分"] = value["现行S关联评分"]
+            # 人工登记的问题可能不在旧SQLite中，刷新时保留其完整证据。
+            target = evidence.setdefault(key, {})
+            for field, content in value.items():
+                target.setdefault(field, content)
         elif key in evidence and "现行S说明" in value:
             evidence[key]["现行S说明"] = value["现行S说明"]
     for key, value in evidence.items():
