@@ -100,5 +100,433 @@
       "_实验系统/报告素材/历史_评判标准_v1_20260916.md": "24f4867b1c78c46f5429dda7be9c531bec6af63dedd0dc4e017c12c3f45d9887",
       "_实验系统/报告素材/历史_QR评测验收.ipynb": "4478b3d59792194fde9da3127777906e7383734dfdca516c555f65f719040215"
     }
+  },
+  "execution_entry_review": {
+    "date": "2026-09-24",
+    "scope": "仓库全部77个脚本/Notebook/命令入口及当前维护引用；58个原始参赛作品保持原样",
+    "inventory": [
+      {
+        "path": "_实验系统/报告素材/历史_QR评测验收.ipynb",
+        "role": "历史验收",
+        "sha256": "4478b3d59792194fde9da3127777906e7383734dfdca516c555f65f719040215"
+      },
+      {
+        "path": "_实验系统/报告素材/导出报告图表.py",
+        "role": "已停用历史生成代码",
+        "sha256": "2d84e1c7740ff4bf4c4779a75f35d1510ee2519d80e4d36486fc3eb837705810"
+      },
+      {
+        "path": "_实验系统/报告素材/导出本轮报告.py",
+        "role": "现行入口或历史采集核心",
+        "sha256": "1ac9857ec7470c3bc6ebbe72edce31a3a80b1098f9cadcfe70f66b5e91d964ce"
+      },
+      {
+        "path": "_实验系统/报告素材/应用最终裁定.py",
+        "role": "已停用历史生成代码",
+        "sha256": "08ea151b9dfc0de5f01eab0cfb5b02253a46ba620e89f06c19f5e3afd9e71e30"
+      },
+      {
+        "path": "_实验系统/报告素材/报告字体.py",
+        "role": "现行入口或历史采集核心",
+        "sha256": "b9d95ad083916d725ab17a888c5108e14d9e017219cd2288ba9584ba6959edcc"
+      },
+      {
+        "path": "_实验系统/报告素材/终审.py",
+        "role": "现行入口或历史采集核心",
+        "sha256": "fce5cce0b687fe6a4a4bb051576335baf892d19acab73b0706914751208c3bd1"
+      },
+      {
+        "path": "_实验系统/报告素材/终审交互.py",
+        "role": "现行入口或历史采集核心",
+        "sha256": "9dbed4badba2c72856333c61df90b3a60c18362b1acfb3bafca349efe9d46396"
+      },
+      {
+        "path": "_实验系统/报告素材/终审判定.py",
+        "role": "已停用历史生成代码",
+        "sha256": "d60698834e4145c09083eb24b895b357e48465b269532f5f2807117a973361f6"
+      },
+      {
+        "path": "_实验系统/报告素材/统一数据表格式.py",
+        "role": "已停用历史生成代码",
+        "sha256": "a22d5e094c1001fa8dd83e6615e82cdc8aba26785e508daad7b076781df8297e"
+      },
+      {
+        "path": "_实验系统/报告素材/编排简洁报告.py",
+        "role": "已停用历史生成代码",
+        "sha256": "574d45f46fed6b2c239cdf9e940c8d88ffc635e49606336da63a129140449896"
+      },
+      {
+        "path": "_实验系统/报告素材/编排详细报告.py",
+        "role": "已停用历史生成代码",
+        "sha256": "cd74e5be7a4bde110ecc6b9d106763a5a429662e8547ebc1425981826b3332a3"
+      },
+      {
+        "path": "_实验系统/报告素材/补充评分细项.py",
+        "role": "已停用历史生成代码",
+        "sha256": "8936eb623fdf33a49f9dda6756a1ea0c74c04f1d5ffbf36ae86babc06c432008"
+      },
+      {
+        "path": "_实验系统/报告素材/补充运行条件.py",
+        "role": "已停用历史生成代码",
+        "sha256": "362de5127192db9ff61827470b3c52d35d17d28c90ec9d10a7a86763178049fc"
+      },
+      {
+        "path": "_实验系统/报告素材/语言格式修正.py",
+        "role": "已停用历史生成代码",
+        "sha256": "8ec26da7add262b0e3271b52d8a95807e08282086a545b9e78e6f4af55c0b20c"
+      },
+      {
+        "path": "_实验系统/评测数据处理核心.py",
+        "role": "现行入口或历史采集核心",
+        "sha256": "a37c7a17de432f71b5e51050306b1cee5e7735469440e8e4e0eea2656e3b8842"
+      },
+      {
+        "path": "Claude/第一轮/01_explore_schema.py",
+        "role": "原始参赛作品",
+        "sha256": "48759a4c10c60c0df88118182a18fa819cc7aa341136eb015452c8e7e40127c8"
+      },
+      {
+        "path": "Claude/第一轮/02_explore_dims.py",
+        "role": "原始参赛作品",
+        "sha256": "a9d5fbe81c154a6ce6bc517daa81a4723648a30c5404971f5e432c77fe76915d"
+      },
+      {
+        "path": "Claude/第一轮/03_explore_analysis.py",
+        "role": "原始参赛作品",
+        "sha256": "6c357fd396389527d4aab3555fd168fedf2ae8fcd34e78845c5b6ebbd4565703"
+      },
+      {
+        "path": "Claude/第一轮/04_verify.py",
+        "role": "原始参赛作品",
+        "sha256": "b1fb5663631135f3397f43b5bcfce090002d7b3d46b3463ff52494f27ee48eb9"
+      },
+      {
+        "path": "Claude/第一轮/05_verify2.py",
+        "role": "原始参赛作品",
+        "sha256": "82d0fc087ef99070b86e5451ea2d81fe9b9cb512bd52d55e826bfc186c253416"
+      },
+      {
+        "path": "Claude/第一轮/06_build_aggregates.py",
+        "role": "原始参赛作品",
+        "sha256": "14cd4a58ecda91f5fa709320704253d288c3e280fc86cf48aa152a03c0e8b237"
+      },
+      {
+        "path": "Claude/第一轮/07_build_excel.py",
+        "role": "原始参赛作品",
+        "sha256": "deff77adc9a80e2bc84f5e0d19237ab2135e65cd32e452d54da7a3fda3a34f53"
+      },
+      {
+        "path": "Claude/第一轮/08_excel_sheets.py",
+        "role": "原始参赛作品",
+        "sha256": "83400ea568c30f41fb8a04f2a1de5fbe9e77e9c4215cf834a8bdb828e6dc663c"
+      },
+      {
+        "path": "Claude/第一轮/09_excel_sheets2.py",
+        "role": "原始参赛作品",
+        "sha256": "be622a94d9ed70f613a426de346948d99bfba00e751f8db09df76f63807c063c"
+      },
+      {
+        "path": "Claude/第一轮/10_excel_sheets3.py",
+        "role": "原始参赛作品",
+        "sha256": "d270061aebbca25fd9e9f1890e00a01c52a1ac8a229c24b4993cb39491dd7e1f"
+      },
+      {
+        "path": "Claude/第一轮/11_excel_sheets4.py",
+        "role": "原始参赛作品",
+        "sha256": "1eb035de063dad02ffa4d1e16fafca11cb7173ed3c1739695555c9783707908d"
+      },
+      {
+        "path": "Claude/第一轮/12_verify_excel.py",
+        "role": "原始参赛作品",
+        "sha256": "73a06f32d4b53c39c01c3b249fccb60b6ddac648d9688c9a6983753ab492660c"
+      },
+      {
+        "path": "Claude/第一轮/13_check_layout.py",
+        "role": "原始参赛作品",
+        "sha256": "e16c3333ee791458215b8543e3202cb9d05b179f53ef317a841d7040df313fc1"
+      },
+      {
+        "path": "Claude/第一轮/14_render_preview.py",
+        "role": "原始参赛作品",
+        "sha256": "244023c83cc54dc7ad98504d9065eefe331babe1273990f850b9d08fd5f4b1e9"
+      },
+      {
+        "path": "Claude/第一轮/15_key_numbers.py",
+        "role": "原始参赛作品",
+        "sha256": "b7254a69e0f06ea6316755f1c5a3fa9a6e52f58a52a8117168c7d84837fe1f44"
+      },
+      {
+        "path": "Gemini/第一轮/aggregate_all.py",
+        "role": "原始参赛作品",
+        "sha256": "b049af8b14d4a8779766ce415b4777855db3f2d02fd958ee1bbfcdbdcc219424"
+      },
+      {
+        "path": "Gemini/第一轮/build_sheet1.py",
+        "role": "原始参赛作品",
+        "sha256": "279ea20a6abb10f7c11ec24720dbb6e998b2ace7bbb348019ae3568ae7ece4ce"
+      },
+      {
+        "path": "Gemini/第一轮/build_sheet2.py",
+        "role": "原始参赛作品",
+        "sha256": "847a6e529a2ff5abb31e35717b93915995d43b0512fca42bb77509573bd29f71"
+      },
+      {
+        "path": "Gemini/第一轮/build_sheet3.py",
+        "role": "原始参赛作品",
+        "sha256": "875f8d6b0537dbb7498d4bf79f30ae90164e4cec949477f2931d49f524a76bd7"
+      },
+      {
+        "path": "Gemini/第一轮/build_sheet4.py",
+        "role": "原始参赛作品",
+        "sha256": "194e9d53155d3fc3e052dea5ddb3d3ff32ac1d93d97be98baea43ce81dac1141"
+      },
+      {
+        "path": "Gemini/第一轮/build_sheet5.py",
+        "role": "原始参赛作品",
+        "sha256": "6202858d26d7e0737527a263d252d91e5cf7c3636882e49f0dd07dfcc4bcfe14"
+      },
+      {
+        "path": "Gemini/第一轮/build_sheet6.py",
+        "role": "原始参赛作品",
+        "sha256": "eddcae5e18a0dbe5ac148e3639ba1960aaac270d807031e0092c92c2e1a8e6cc"
+      },
+      {
+        "path": "Gemini/第一轮/common_styles.py",
+        "role": "原始参赛作品",
+        "sha256": "50a854dca2f4ee83ce79625300de296648f653e5f0e414ecbcf756d0fd40ca70"
+      },
+      {
+        "path": "Gemini/第一轮/make_final_excel.py",
+        "role": "原始参赛作品",
+        "sha256": "63b99968b4d3bcd4b8c86d44497240ae3920fc99b5c6b3b0e156e684944b3341"
+      },
+      {
+        "path": "Gemini/第二轮/01_data_understanding_and_quality.py",
+        "role": "原始参赛作品",
+        "sha256": "641d3afd33c792ac0c7b41a29c015eb3b9df643851fb7a99f2975d052bccd52c"
+      },
+      {
+        "path": "Gemini/第二轮/01_explore_metadata.py",
+        "role": "原始参赛作品",
+        "sha256": "a61d1aa239aff49d7f05869d4740f377f440f0dfcd972bee6772e7ca389abb78"
+      },
+      {
+        "path": "Gemini/第二轮/02_broad_exploration.py",
+        "role": "原始参赛作品",
+        "sha256": "27846205c8a5cda72e1d365af1de82ab204e6d80e51d449cb483afc83088f2ef"
+      },
+      {
+        "path": "Gemini/第二轮/03_temporal_and_yoy_analysis.py",
+        "role": "原始参赛作品",
+        "sha256": "dddca84801143fb08f8eaa775cd0942fa2de377e2688304f18546544382aecf8"
+      },
+      {
+        "path": "Gemini/第二轮/04_growth_decomposition.py",
+        "role": "原始参赛作品",
+        "sha256": "215f93b29e11bcc5bd06a765c435ae6dcba0f019565c5559fa3ce9d97848eb72"
+      },
+      {
+        "path": "Gemini/第二轮/05_deep_investigation.py",
+        "role": "原始参赛作品",
+        "sha256": "f79c18a8d1f96a7368d4a4f953029e6889f05246e056dc320e42b20b0c152c71"
+      },
+      {
+        "path": "Gemini/第二轮/06_resolution_and_borough_analysis.py",
+        "role": "原始参赛作品",
+        "sha256": "ce6aff7c0b3901559773f7b36d647ddb87be443313ffd18e4972551f7e85799c"
+      },
+      {
+        "path": "Gemini/第二轮/07_resolution_and_pareto.py",
+        "role": "原始参赛作品",
+        "sha256": "88c624c9af56932343a74930a679c45e6af6bf5f2e19ee1b2d6cbf61dbe159d8"
+      },
+      {
+        "path": "Gemini/第二轮/08_deep_metrics_and_checks.py",
+        "role": "原始参赛作品",
+        "sha256": "cc1d97788e7a108821fb464e880e4d5a1af63738c7dbcc6ea2985b2af8cd08b3"
+      },
+      {
+        "path": "Gemini/第二轮/09_build_final_excel.py",
+        "role": "原始参赛作品",
+        "sha256": "51b26a044b887f8e086e1e0570c33b7ee2fe55a8e5d79cf63967da1cdc75c237"
+      },
+      {
+        "path": "Gemini/第二轮/10_verify_deliverables.py",
+        "role": "原始参赛作品",
+        "sha256": "9c4946ab01cc443c2189fe6aa019862bc0a21a68378a432ec99763f4a8a7fb6d"
+      },
+      {
+        "path": "Gemini/第二轮/inspect_hpd.py",
+        "role": "原始参赛作品",
+        "sha256": "95cdb8d82534cf276147ce5cd72c7219cc3ffe1bafa0edd3a9184c57e095123f"
+      },
+      {
+        "path": "GLM/第一轮/处理分析.py",
+        "role": "原始参赛作品",
+        "sha256": "e3e619538139fde07d38af5cf3ffc22b7cb798b28775fd3ebd44cbab91c9abad"
+      },
+      {
+        "path": "GLM/第一轮/生成看板.py",
+        "role": "原始参赛作品",
+        "sha256": "2c79ba2ee69c03ba7cce2fe30c9a402bcc20fa3c6b64b29943c88811201a30a2"
+      },
+      {
+        "path": "GPT/第一轮/analyze.py",
+        "role": "原始参赛作品",
+        "sha256": "0e8629691a6ea33e2e8459fce502c09083e2dca373352c066b0672bb6c736600"
+      },
+      {
+        "path": "GPT/第一轮/summarize.py",
+        "role": "原始参赛作品",
+        "sha256": "f7393f9b7f4ea83200e02fef5de022e6a52b38c4ed9c9a832b7f91b6222f94e5"
+      },
+      {
+        "path": "GPT/第一轮/verify.py",
+        "role": "原始参赛作品",
+        "sha256": "464e3be8f9acf0354a02bce8919b733b3d58b06111f6a39143fb6c4fb5701fae"
+      },
+      {
+        "path": "GPT/第一轮/write_findings.py",
+        "role": "原始参赛作品",
+        "sha256": "2a5441cc005f25656e9ec2f8f59e03d825ca244746a08202dfeac427e3a4734e"
+      },
+      {
+        "path": "GPT/第二轮/build_workbook.py",
+        "role": "原始参赛作品",
+        "sha256": "03567d6a2a22b8d77d4cdf5892509747eb85287b00bcb05b13d39c6434bddfa2"
+      },
+      {
+        "path": "GPT/第二轮/deep_checks.py",
+        "role": "原始参赛作品",
+        "sha256": "821722e6e59f00edf4c39f68afcdfe5b3671097ca7844142da7f851555275941"
+      },
+      {
+        "path": "GPT/第二轮/finalize_analysis.py",
+        "role": "原始参赛作品",
+        "sha256": "3ca63a3152d0898c8db0e6b46eea3f6e603d9a0ed65482f498fa8505602c45aa"
+      },
+      {
+        "path": "GPT/第二轮/investigate.py",
+        "role": "原始参赛作品",
+        "sha256": "0155117957465fe85552358d65ee5c39c2f8de053e97bce00b2ced46d22258bc"
+      },
+      {
+        "path": "GPT/第二轮/profile_data.py",
+        "role": "原始参赛作品",
+        "sha256": "225ef38da5ac1ea7e0b259acbb17987bec6cd683c39bd2b9fb3556733cd09d64"
+      },
+      {
+        "path": "GPT/第二轮/verify_workbook.py",
+        "role": "原始参赛作品",
+        "sha256": "e0a7fc4840a439491a82d2e3e781ad611ad8ccb15eca6f6c35303cd4931a66c9"
+      },
+      {
+        "path": "Grok/第一轮/analyze_311.py",
+        "role": "原始参赛作品",
+        "sha256": "4260c2e010d2bff938801b6c55b83cc482257432b2a1fa041fce12177357f451"
+      },
+      {
+        "path": "Grok/第一轮/build_excel.py",
+        "role": "原始参赛作品",
+        "sha256": "d5b3b040bffe304210df1ec4585bae783f378fa86f5e86714d7c2d8b8c7b767a"
+      },
+      {
+        "path": "Grok/第一轮/diagnose.py",
+        "role": "原始参赛作品",
+        "sha256": "6bd3cef9146183ff77af595a32a7ba86f1b5417e5399ba65213aaf12f0724b85"
+      },
+      {
+        "path": "Grok/第二轮/build_workbook.py",
+        "role": "原始参赛作品",
+        "sha256": "ecaa2b1ab62d7faba2b7b9e3ca2ef27f0927bf36f73d7e61b38e033cae094612"
+      },
+      {
+        "path": "Grok/第二轮/qa_verify.py",
+        "role": "原始参赛作品",
+        "sha256": "ef981165b4e6b56eccf7c97ef2dc83b31f91a87a8cbc7ee6a292ef6ce8bbb41b"
+      },
+      {
+        "path": "Qwen/第一轮/analysis.py",
+        "role": "原始参赛作品",
+        "sha256": "797b22183afce70072d965db60ad108b0a75a161b301ee2ab3a70344122eaa24"
+      },
+      {
+        "path": "Qwen/第一轮/build_excel.py",
+        "role": "原始参赛作品",
+        "sha256": "3380453ad0d013147a81153510805969fa7dda4b0ee17243c2ea8e4c19138ed3"
+      },
+      {
+        "path": "Qwen/第二轮/build_excel.py",
+        "role": "原始参赛作品",
+        "sha256": "e34a789da7cd383637c71f9b191377970dd37ccdf86ea2e173a7182cd0ff010d"
+      },
+      {
+        "path": "Qwen/第二轮/build_slim.py",
+        "role": "原始参赛作品",
+        "sha256": "cdf1cd97f8498cbb825e8f21d3b03e798e61ca1d618e81a98a4a593b3d4aff49"
+      },
+      {
+        "path": "Qwen/第二轮/compute_final.py",
+        "role": "原始参赛作品",
+        "sha256": "9b206739449f2a6e273ec879682c0902404a4dcfe1bdc2cb6e9151203eda4063"
+      },
+      {
+        "path": "交付成果/01_评测数据整理与验收.ipynb",
+        "role": "现行入口或历史采集核心",
+        "sha256": "195d952c08b7f56499407d510f4b3c158189f7bf2108fc081fa91aa463a5ed53"
+      },
+      {
+        "path": "生成分析表.py",
+        "role": "已停用历史生成代码",
+        "sha256": "8b5afddc36c07d6136ca4817ef2f4334e4dd8735fa8d9df82d9886990b9cc19e"
+      },
+      {
+        "path": "评测数据处理.py",
+        "role": "现行入口或历史采集核心",
+        "sha256": "401cae1ada953395538c2e28288f14aaeae183f6ae5513055f39d8e08195f67a"
+      },
+      {
+        "path": "运行数据处理.cmd",
+        "role": "现行入口或历史采集核心",
+        "sha256": "c5d250d0d771a0c180dffadfcf1100f2e8bd7508edd7afb4e4a19c8bc250df8c"
+      }
+    ],
+    "legacy_writers": {
+      "count": 10,
+      "check": "直接执行和导入均在依赖加载与写入前停止"
+    },
+    "current_pipeline": "默认同步、--check-scores、--evidence及核心直接入口均执行通过",
+    "sqlite_refresh": "真实内部SQLite只读提取后，在隔离副本写出；325条S分项与依据一致，SQLite及查证HTML哈希不变",
+    "native_excel": {
+      "score_selectors": 8,
+      "single_ai_rounds": 16,
+      "overview_rounds": 2,
+      "dimension_combinations": 6,
+      "dimension_cells": "每组合8个系统×6维",
+      "owned_pid_exit": 42208
+    },
+    "pdf_export": "当前Word副本实际导出34+7页，逐页文字与正式PDF一致，实例已退出",
+    "boundaries": "原始参赛脚本只做范围及语法扫描，未重跑参赛分析；历史过程代码未改作现行评分；最终Excel和报告未改写",
+    "files_sha256": {
+      "生成分析表.py": "8b5afddc36c07d6136ca4817ef2f4334e4dd8735fa8d9df82d9886990b9cc19e",
+      "_实验系统/报告素材/应用最终裁定.py": "08ea151b9dfc0de5f01eab0cfb5b02253a46ba620e89f06c19f5e3afd9e71e30",
+      "_实验系统/报告素材/编排详细报告.py": "cd74e5be7a4bde110ecc6b9d106763a5a429662e8547ebc1425981826b3332a3",
+      "_实验系统/报告素材/编排简洁报告.py": "574d45f46fed6b2c239cdf9e940c8d88ffc635e49606336da63a129140449896",
+      "_实验系统/报告素材/补充运行条件.py": "362de5127192db9ff61827470b3c52d35d17d28c90ec9d10a7a86763178049fc",
+      "_实验系统/报告素材/补充评分细项.py": "8936eb623fdf33a49f9dda6756a1ea0c74c04f1d5ffbf36ae86babc06c432008",
+      "_实验系统/报告素材/统一数据表格式.py": "a22d5e094c1001fa8dd83e6615e82cdc8aba26785e508daad7b076781df8297e",
+      "_实验系统/报告素材/语言格式修正.py": "8ec26da7add262b0e3271b52d8a95807e08282086a545b9e78e6f4af55c0b20c",
+      "_实验系统/报告素材/导出报告图表.py": "2d84e1c7740ff4bf4c4779a75f35d1510ee2519d80e4d36486fc3eb837705810",
+      "_实验系统/报告素材/终审判定.py": "d60698834e4145c09083eb24b895b357e48465b269532f5f2807117a973361f6",
+      "_实验系统/报告素材/终审.py": "fce5cce0b687fe6a4a4bb051576335baf892d19acab73b0706914751208c3bd1",
+      "_实验系统/报告素材/终审交互.py": "9dbed4badba2c72856333c61df90b3a60c18362b1acfb3bafca349efe9d46396",
+      "评测数据处理.py": "401cae1ada953395538c2e28288f14aaeae183f6ae5513055f39d8e08195f67a",
+      "_实验系统/评测数据处理核心.py": "a37c7a17de432f71b5e51050306b1cee5e7735469440e8e4e0eea2656e3b8842",
+      "运行数据处理.cmd": "c5d250d0d771a0c180dffadfcf1100f2e8bd7508edd7afb4e4a19c8bc250df8c",
+      "资料/公开仓库说明.md": "1f5e378b37f00884a880815241fe8ca34ef1c62abbe4ead5b13c64caadc73eb4",
+      "资料/复现说明.md": "da91762b2dc579e699387f863033d4b90cbfb28f98ab984ec5f6eea0b24534a0",
+      "_实验系统/README.md": "efe1a3c8cff0a1c570b184d6dc68af96d0c42091a9745cec869e9e010cc380ea",
+      "_实验系统/报告素材/导出本轮报告.py": "1ac9857ec7470c3bc6ebbe72edce31a3a80b1098f9cadcfe70f66b5e91d964ce"
+    }
   }
 }

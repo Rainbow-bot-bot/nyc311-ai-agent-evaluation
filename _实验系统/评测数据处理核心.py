@@ -1,4 +1,6 @@
-"""评测数据整理核心：SQLite → 分析表 → 字段说明与查证。"""
+"""历史SQLite采集整理：extract返回旧Q/R底表，仅供原始记录追溯。
+现行S评分及主工作簿由根目录评测数据处理.py维护；禁止用extract重建正式Excel。
+"""
 
 from pathlib import Path
 from copy import deepcopy
@@ -2531,17 +2533,32 @@ def build_field_dictionary_rows(tables):
 
 # 8. 生成查证页和外置证据数据
 def write_evidence_page(evidence):
+    # Any caller must overlay the current workbook before publishing evidence.
+    path = ROOT / '评测数据处理.py'
+    spec = importlib.util.spec_from_file_location('current_score_pipeline', path)
+    pipeline = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(pipeline)
+    pipeline.retain_current_assessment(evidence)
+    scores = pipeline.read_current_scores()
+    evidence = pipeline.merge_current_scores(evidence, scores)
+    pipeline.verify_current_scores(evidence, scores)
     target = ROOT / '交付成果/查证.html'
     target.parent.mkdir(exist_ok=True)
     payload = ROOT / '交付成果/查证数据.js'
     data = json.dumps(evidence, ensure_ascii=False, separators=(',', ':')).replace('</script>', '<\\/script>')
     payload.write_text('window.PROJECT2_EVIDENCE=' + data + ';', encoding='utf-8')
     page = '<!doctype html>\n<html lang="zh-CN">\n<meta charset="UTF-8">\n<meta name="viewport" content="width=device-width,initial-scale=1">\n<title>项目2 · 证据查证</title>\n<style>\nbody{max-width:1100px;margin:36px auto;font:16px/1.7 system-ui;padding:0 20px;color:#233044}\na{color:#1267af}input{width:min(760px,72%);padding:10px}button{padding:10px 16px}\ntable{width:100%;border-collapse:collapse}td{padding:8px;border-bottom:1px solid #dde3ea;vertical-align:top}\ntd:first-child{width:190px;font-weight:600}.panel{background:#f7f9fb;border:1px solid #dde5ec;padding:16px;border-radius:8px}\n</style>\n<p><a href="开始阅读.html">← 返回首页</a></p>\n<h1>证据查证</h1>\n<p>输入 Excel 中的证据编号。</p>\n<div class="panel"><input id="key" placeholder="例如 CHK:CLAUDE:ONEADDR"><button id="go">查证</button><p id="status"></p><div id="result"></div></div>\n<script src="查证数据.js"></script>\n<script>\nconst data=window.PROJECT2_EVIDENCE||{};\nfunction render(value,node){\n if(value&&typeof value===\'object\'){\n  let table=document.createElement(\'table\');\n  for(let [k,v] of Object.entries(value)){\n   let row=table.insertRow(),a=row.insertCell(),b=row.insertCell();\n   a.textContent=k;\n   if(v&&typeof v===\'object\'){\n    let d=document.createElement(\'details\'),s=document.createElement(\'summary\');\n    s.textContent=\'展开\';d.append(s);render(v,d);b.append(d);\n   }else b.textContent=v===null?\'—\':String(v);\n  }\n  node.append(table);\n }else node.textContent=value===null?\'—\':String(value);\n}\nfunction show(){\n let k=document.getElementById(\'key\').value.trim(),value=data[k];\n document.getElementById(\'status\').textContent=value?k:\'未找到\';\n let node=document.getElementById(\'result\');node.replaceChildren();\n if(value)render(value,node);\n}\ndocument.getElementById(\'go\').onclick=show;\nfunction fromhash(){\n if(location.hash){\n  document.getElementById(\'key\').value=decodeURIComponent(location.hash.slice(1));\n  show();\n }\n}\nwindow.onhashchange=fromhash;fromhash();\n</script>\n</html>'
-    target.write_text(page, encoding='utf-8')
+    if not target.exists():
+        target.write_text(page, encoding='utf-8')
     return (target, payload)
 
 
 def main():
+    import sys
+    sys.path.insert(0, str(ROOT))
+    import 评测数据处理 as current_pipeline
+    return current_pipeline.main()
+    # 以下保留旧入口代码供追溯，不再执行。
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         '--database',
@@ -2588,5 +2605,8 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    import sys
+    sys.path.insert(0, str(ROOT))
+    import 评测数据处理 as current_pipeline
+    current_pipeline.main()
 

@@ -161,7 +161,7 @@ def retain_current_assessment(evidence):
 
 
 def run(database=DEFAULT_DB):
-    """整理评测数据并刷新查证入口。"""
+    """从内部SQLite刷新历史采集记录，再叠加正式Excel的S评分。"""
     core = load_core()
     before_hash = hashlib.sha256(database.read_bytes()).hexdigest()
 
@@ -172,6 +172,7 @@ def run(database=DEFAULT_DB):
     evidence_page, evidence_payload = core.write_evidence_page(evidence)
 
     manifest = {
+        "source": "SQLite历史采集与旧Q/R表；现行S评分取正式Excel，不从这些表重建工作簿",
         "tables": {name: len(rows) for name, rows in tables},
         "field_dictionary_rows": len(field_rows),
     }
@@ -202,6 +203,7 @@ def run(database=DEFAULT_DB):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--refresh-telemetry", action="store_true", help="需要内部SQLite：刷新历史采集记录并叠加现行S评分")
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
     parser.add_argument("--evidence", help="查询证据编号")
     parser.add_argument("--sync-scores", action="store_true", help="从正式Excel同步325条S得分和批注到查证数据")
@@ -212,17 +214,18 @@ def main():
         print(json.dumps(result, ensure_ascii=False))
         return
 
-    core = load_core()
     if args.evidence:
-        _, evidence, _, _ = core.extract(args.database)
-        retain_current_assessment(evidence)
-        evidence = merge_current_scores(evidence, read_current_scores())
+        verify_current_scores()
+        evidence = load_evidence()
         if args.evidence not in evidence:
             raise ValueError("不存在此证据编号")
         print(json.dumps(evidence[args.evidence], ensure_ascii=False, indent=2))
         return
 
-    run(args.database)
+    if args.refresh_telemetry:
+        run(args.database)
+    else:
+        print(json.dumps(sync_current_scores(), ensure_ascii=False))
 
 
 if __name__ == "__main__":

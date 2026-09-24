@@ -1,47 +1,74 @@
+"""只读检查现行Excel的全部有限选择器；期望分数来自S分项。"""
 from pathlib import Path
-import json,hashlib,datetime,sys
-import pythoncom
-import win32com.client as w
-A=Path(__file__).parent
-sys.path.insert(0,str(A.parents[1]))
+import sys,json,hashlib,gc,time
+from collections import defaultdict
+from decimal import Decimal,ROUND_HALF_UP
+ROOT=Path(__file__).resolve().parents[2];sys.path.insert(0,str(ROOT))
 import 评测数据处理 as pipeline
-tables=pipeline.load_core().extract(A.parents[1]/'_实验系统/telemetry/benchmark.sqlite')[0]
-metrics=dict(tables)['评分与用量']
-app=w.dynamic.Dispatch(pythoncom.CoCreateInstance('Excel.Application',None,pythoncom.CLSCTX_LOCAL_SERVER,pythoncom.IID_IDispatch))
-book=None;out=[]
-try:
- app.Visible=False;app.DisplayAlerts=False
- path=Path(sys.argv[1]) if len(sys.argv)>1 else A.parents[1]/'交付成果/项目2_AI评测分析.xlsx'
- book=app.Workbooks.Open(str(path),0,True)
- runs=book.Worksheets('运行记录').Range('A2:R16').Value2
- s=book.Worksheets('单AI分析')
- for ai in ['GPT','Grok','DeepSeek','GLM','Qwen','Gemini','Claude','Kimi']:
-  for rnd in ['第一轮','第二轮']:
-   s.Range('C3').Value2=ai;s.Range('G3').Value2=rnd;app.CalculateFullRebuild()
-   r=next((r for r in runs if r[0]==ai and r[1]==rnd),None)
-   selected=[m for m in metrics if m['AI']==ai and m['轮次']==rnd]
-   expected=[]
-   for kind in ['质量分项','可靠性分项']:
-    items=[m for m in selected if m['指标类别']==kind]
-    expected.append(sum(m['数值'] for m in items)+sum(m['数值'] for m in selected if kind=='质量分项' and m['指标类别']=='质量封顶') if items else '—')
-   actual=[s.Range(c).Value2 for c in ['B5','E5']]
-   assert actual==expected,(ai,rnd,expected,actual)
-   assert ('仅作观察' in str(s.Range('J3').Value2))==(ai=='Gemini' and rnd=='第二轮')
-   out.append({'AI':ai,'轮次':rnd,'Q/R':actual,'状态':s.Range('J3').Value2})
- for rnd in ['第一轮','第二轮']:
-  ov=book.Worksheets('评测总览');ov.Range('C3').Value2=rnd;app.CalculateFullRebuild()
-  for row in range(9,15):
-   ai=ov.Cells(row,2).Value2;r=next(r for r in runs if r[0]==ai and r[1]==rnd)
-   assert ov.Cells(row,3).Value2==r[13]
-  ov.ExportAsFixedFormat(0,str(A/f'终审总览-{rnd}.pdf'))
- for ai,rnd in [('GPT','第二轮'),('Kimi','第一轮'),('Claude','第一轮')]:
-  s.Range('C3').Value2=ai;s.Range('G3').Value2=rnd;app.CalculateFullRebuild();s.ExportAsFixedFormat(0,str(A/f'终审单AI-{ai}.pdf'))
- (path.parent/'待替换交互.json' if len(sys.argv)>1 else A/'终审交互.json').write_text(json.dumps({'时间':datetime.datetime.now().astimezone().isoformat(),'文件':str(path),'工作簿SHA256':hashlib.sha256(path.read_bytes()).hexdigest(),'案例':out,'总览轮次':['第一轮','第二轮']},ensure_ascii=False,indent=2),encoding='utf8');print('16种AI/轮次切换与2轮总览核对通过',flush=True)
- if len(sys.argv)>1:
-  import time
-  app.Visible=True;app.WindowState=-4137;s.Activate();s.Range('C3').Value2='Gemini';s.Range('G3').Value2='第二轮';app.CalculateFullRebuild();app.ActiveWindow.ScrollRow=1;app.ActiveWindow.ScrollColumn=1
-  print(s.Range('J3').Value2,flush=True)
-  time.sleep(50)
-finally:
- if book is not None:book.Close(False)
- app.Quit()
+
+def main():
+    import win32com.client,win32process,psutil
+    path=Path(sys.argv[1]).resolve() if len(sys.argv)>1 else ROOT/'交付成果/项目2_AI评测分析.xlsx'
+    entries=pipeline.read_current_scores(path)
+    totals=defaultdict(float);dims=defaultdict(float)
+    for entry in entries.values():
+        s=entry['评分原文'];totals[s['AI'],s['轮次']]+=s['得分'];dims[s['AI'],s['轮次'],s['条款'][0]]+=s['得分']
+    def want(ai,rd):return totals.get((ai,rd))
+    def same(actual,expected):
+        if expected is None:return actual in (None,'','—','–')
+        return isinstance(actual,(int,float)) and abs(actual-expected)<1e-8
+    systems=['GPT','Grok','DeepSeek','GLM','Qwen','Gemini','Claude','Kimi']
+    before=hashlib.sha256(path.read_bytes()).hexdigest()
+    app=win32com.client.DispatchEx('Excel.Application');pid=win32process.GetWindowThreadProcessId(app.Hwnd)[1]
+    book=score=single=overview=dimension=None
+    try:
+        app.Visible=False;app.DisplayAlerts=False;book=app.Workbooks.Open(str(path),0,True)
+        score=book.Worksheets('评分细项');single=book.Worksheets('单AI分析');overview=book.Worksheets('评测总览');dimension=book.Worksheets('分维度比较')
+        for ai in systems:
+            score.Range('B2').Value2=ai;app.CalculateFull()
+            assert same(score.Range('D22').Value2,want(ai,1)),ai
+            assert same(score.Range('E22').Value2,want(ai,2)),ai
+            single.Range('C3').Value2=ai
+            for rd,label in [(1,'第一轮'),(2,'第二轮')]:
+                single.Range('G3').Value2=label;app.CalculateFull()
+                assert same(single.Range('B5').Value2,want(ai,rd)),(ai,rd,'本轮')
+                assert same(single.Range('E5').Value2,want(ai,3-rd)),(ai,rd,'另一轮')
+        runs=book.Worksheets('运行记录').Range('A2:R16').Value2
+        for rd,label in [(1,'第一轮'),(2,'第二轮')]:
+            overview.Range('C3').Value2=label;app.CalculateFull()
+            for row in range(9,15):
+                ai=overview.Cells(row,2).Value2
+                assert same(overview.Cells(row,3).Value2,want(ai,1)),('总览首轮',ai)
+                assert same(overview.Cells(row,4).Value2,want(ai,2)),('总览次轮',ai)
+                record=next(r for r in runs if r[0]==ai and r[1]==label)
+                assert same(overview.Cells(row,5).Value2,record[7]/60 if record[7] is not None else None),('总览用时',ai,rd)
+        maxima=dict(zip('ABCDEF',[15,20,20,25,10,10]))
+        for label in ['第一轮','第二轮','两轮变化']:
+            dimension.Range('B3').Value2=label
+            for metric in ['得分','得分率']:
+                dimension.Range('F3').Value2=metric;app.CalculateFull()
+                for row,ai in enumerate(systems,6):
+                    for col,dim in enumerate('ABCDEF',2):
+                        x=dims.get((ai,1,dim));y=dims.get((ai,2,dim))
+                        expected=x if label=='第一轮' else y if label=='第二轮' else (y-x if x is not None and y is not None else None)
+                        actual=dimension.Cells(row,col).Value2
+                        if metric=='得分' or expected is None:assert same(actual,expected),(ai,label,metric,dim,actual,expected)
+                        else:
+                            percent=float((Decimal(str(expected))/Decimal(maxima[dim])*100).quantize(Decimal('0.1'),rounding=ROUND_HALF_UP))
+                            assert abs(float(str(actual).replace('%',''))-percent)<1e-8,(ai,label,metric,dim,actual,percent)
+        print(json.dumps({'评分细项':8,'单AI分析':16,'总览':2,'分维度比较':6,'分维度核对':'8个系统×6维','评分来源':'正式Excel S分项','工作簿SHA256':before},ensure_ascii=False))
+    finally:
+        if book is not None:book.Close(False)
+        score=single=overview=dimension=book=None
+        app.Quit();app=None;gc.collect()
+        for _ in range(20):
+            if not psutil.pid_exists(pid):break
+            time.sleep(.2)
+        if psutil.pid_exists(pid):
+            # Only this DispatchEx instance, after its read-only workbook was closed.
+            process=psutil.Process(pid);process.terminate();process.wait(timeout=5)
+        if psutil.pid_exists(pid):raise RuntimeError(f'本次Excel实例尚未退出：{pid}')
+        print(f'Excel实例已退出：{pid}')
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==before
+
+if __name__=='__main__':main()

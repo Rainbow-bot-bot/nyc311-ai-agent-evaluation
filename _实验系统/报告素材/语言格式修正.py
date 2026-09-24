@@ -1,4 +1,10 @@
 """正式工作簿的局部排版修正；由最终裁定生成步骤调用。"""
+
+# 历史源代码保留供回查；执行和导入均在写入之前停止。
+if __name__ == "__main__":
+    raise SystemExit('历史Q/R生成或旧版式脚本已停用，禁止改写现行成果。当前维护见资料/复现说明.md；评分同步用评测数据处理.py --sync-scores，验收用报告素材/终审.py。')
+raise RuntimeError('历史Q/R生成或旧版式脚本已停用，禁止改写现行成果。当前维护见资料/复现说明.md；评分同步用评测数据处理.py --sync-scores，验收用报告素材/终审.py。')
+
 def apply(wb,data,core):
     fields=wb.Worksheets('字段说明')
     dictionary={(r['表名'],r['字段']):r['允许值'] for r in core.build_field_dictionary_rows(list(data.items()))}
