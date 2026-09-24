@@ -15,4 +15,4 @@
 
 六个完成两轮的系统，自主交付总分（S，满分100）平均由 71.67 升至 81.13。Claude 第一轮按接管前工作计 72 分，第二轮未运行；Kimi 两轮未形成可评分成品。各系统做了什么、得分原因、人工维护负担与费用差异见完整报告。
 
-数据来自项目1保存的 25 份 Parquet 快照，共 7,525,498 条记录。维护步骤见[复现说明](资料/复现说明.md)；原始数据清单见`input/data_manifest.json`。
+数据来自[项目1](https://github.com/Rainbow-bot-bot/nyc311-service-request-analysis)保存的 25 份 Parquet 快照，共 7,525,498 条记录。维护步骤见[复现说明](资料/复现说明.md)；原始数据清单见`input/data_manifest.json`。

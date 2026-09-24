@@ -78,5 +78,27 @@
     "visual": "11页变化已检查，其余30页与上版画面一致",
     "format": "Excel仅3个型号说明单元格内容更新，原样式、公式、下拉、图表保留",
     "status": "完成"
+  },
+  "maintenance_sync_review": {
+    "date": "2026-09-24",
+    "based_on_commit": "41385ff7",
+    "scope": "现行标准、Notebook验收、Excel到查证数据同步和首页链接",
+    "scores": 325,
+    "notebook": "10个代码单元从头执行完成，保存实际输出；运行记录缓存和六维总分对账通过",
+    "evidence": "325个评分编号逐字段一致，共享问题编号关联同步",
+    "mutation_test": "副本改分及改依据后核对失败；同步后通过；再次同步内容不变",
+    "visual": "已查看Notebook运行条件、行为核验、配对与六维结果的浏览器预览",
+    "limitations": "本轮验证同步与汇总，未重新裁定325项依据充分性；Excel、Word、PDF文件未改写",
+    "files_sha256": {
+      "README.md": "40623204d40bf90ff83fbd9a96680bdb106aae698b47cc3e7228dac3684d194d",
+      "评测数据处理.py": "deeb715d4b5a13d78eb58ce647e73bf19ab514c92bffeefd016784ca91990d4d",
+      "资料/评判标准.md": "b2e40d949f0c8edbd878cd1012d1a6f4b55d8e1dd9a54824a50d783a138a05ed",
+      "资料/复现说明.md": "75a3cc3945fdc71835f6614887d4e4086a46bacfd1061c3b3544de3c83a28f60",
+      "交付成果/01_评测数据整理与验收.ipynb": "195d952c08b7f56499407d510f4b3c158189f7bf2108fc081fa91aa463a5ed53",
+      "交付成果/查证数据.js": "1420d93bb67f643c72d81769740f776da014c05ba82c6113295e28258338c736",
+      "_实验系统/报告素材/最终评分裁定.json": "2fc5a856379b61a2122f5c308e9cdf5bc825c71ae63b4e8c2a6ebdede0093c5a",
+      "_实验系统/报告素材/历史_评判标准_v1_20260916.md": "24f4867b1c78c46f5429dda7be9c531bec6af63dedd0dc4e017c12c3f45d9887",
+      "_实验系统/报告素材/历史_QR评测验收.ipynb": "4478b3d59792194fde9da3127777906e7383734dfdca516c555f65f719040215"
+    }
   }
 }
