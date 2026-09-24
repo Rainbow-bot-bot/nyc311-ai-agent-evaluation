@@ -27,7 +27,7 @@
 <a href="项目2_自主交付研究报告.md">Markdown 报告</a>
 <a href="查证.html">证据查证</a>
 </div>
-<p>本次复审：GPT第二轮Q为100；Qwen分项90、封顶59；Gemini第二轮未通过Gate，仅作观察。五系统最终Q均值增加0.6分。</p>
+<p>六系统两轮自主交付总分（S，满分100）的均值由71.67升至81.13；GPT第二轮98.5分。Claude仅第一轮72分，Kimi两轮没有可评分成品。</p>
 <p class="file-hint">Excel、Word 文件由本机应用打开。</p>
 </div>
 
@@ -36,11 +36,11 @@
 <table>
 <thead><tr><th>工作表</th><th>用途</th></tr></thead>
 <tbody>
-<tr><td>评测总览</td><td>按轮次查看Q/R、耗时、API目录价、AWR与两轮变化；五个系统配对汇总，Gemini第二轮及Claude、Kimi单列；下方展示分项变化与封顶调整</td></tr>
-<tr><td>单AI分析</td><td>选择 AI 和轮次，查看分项得分、Token/动作构成与单个 AI 两轮变化</td></tr>
-<tr><td>分维度比较</td><td>两轮Q/R、八个AI各维度得分；完整细项见“评分细项”</td></tr>
+<tr><td>评测总览</td><td>查看两轮S评分、耗时、费用参考、无收益动作占比与变化；六系统配对，Claude第一轮及Kimi状态单列；下方展示六维变化</td></tr>
+<tr><td>单AI分析</td><td>选择AI和轮次，查看六方面得分、模型文字处理用量（Token）、动作构成与两轮变化</td></tr>
+<tr><td>分维度比较</td><td>下拉切换第一轮、第二轮或两轮变化，以及得分或得分率；25项明细见“评分细项”</td></tr>
 <tr><td>运行记录 / 评分与用量 / API计价 / 行为记录 / 核验记录</td><td>报表底表</td></tr>
-<tr><td>字段说明</td><td>字段含义、允许值、空值规则；右侧列明模型、思考强度与Harness</td></tr>
+<tr><td>字段说明</td><td>字段含义、允许值、空值规则；右侧列明模型、思考强度与执行环境</td></tr>
 </tbody>
 </table>
 </section>
@@ -50,13 +50,13 @@
 <table>
 <thead><tr><th>维度</th><th>内容</th></tr></thead>
 <tbody>
-<tr><td>成果质量 Q</td><td>数据理解、计算口径、调查深度、证据链、最终 Excel</td></tr>
-<tr><td>过程可靠性 R</td><td>路线控制、自我纠错、最终文件核验</td></tr>
+<tr><td>现行 S 评分</td><td>数据基础15、证据计算20、调查判断20、人工维护25、成品可用10、自主资源10；共25项，满分100</td></tr>
+<tr><td>逐项依据</td><td>“评分与用量”的S分项保存325条得分；批注列出实际工作、缺口、原件与核查依据</td></tr>
 <tr><td>人工接手负担</td><td>追加提示、混合接管、首交修正任务</td></tr>
-<tr><td>投入价值</td><td>时间、Token、API目录价、AWR、返工</td></tr>
+<tr><td>投入价值</td><td>时间、模型用量、按公开单价估算的费用、无收益动作和返工</td></tr>
 </tbody>
 </table>
-<p class="muted">Q、R 满分均为 100。第二轮加入 Evidence-led 方法提示；Grok、Gemini 另有方法清单。</p>
+<p class="muted">第二轮加入依据证据开展调查的方法提示；Grok、Gemini 另有方法清单。</p>
 </section>
 
 <section class="panel" id="samples">
@@ -69,16 +69,16 @@
 <tr><td>DeepSeek / Claude Code</td><td><a href="../DeepSeek/第二轮/最终成果.xlsx">最终成果.xlsx</a> · <a href="../DeepSeek/第二轮/分析说明.md">分析说明</a></td><td>主要对照</td></tr>
 <tr><td>GLM / Claude Code</td><td><a href="../GLM/第二轮/最终成果.xlsx">最终成果.xlsx</a> · <a href="../GLM/第二轮/分析说明.md">分析说明</a></td><td>主要对照</td></tr>
 <tr><td>Qwen / Claude Code</td><td><a href="../Qwen/第二轮/最终成果.xlsx">最终成果.xlsx</a> · <a href="../Qwen/第二轮/分析说明.md">分析说明</a></td><td>主要对照</td></tr>
-<tr><td>Gemini / Antigravity</td><td><a href="../Gemini/第二轮/最终成果.xlsx">原始最终成果.xlsx</a> · <a href="../Gemini/第二轮/最终成果_阅读版.xlsx">阅读版.xlsx</a> · <a href="../Gemini/第二轮/分析说明.md">分析说明</a></td><td>观察记录</td></tr>
+<tr><td>Gemini / Antigravity</td><td><a href="../Gemini/第二轮/最终成果.xlsx">原始最终成果.xlsx</a> · <a href="../Gemini/第二轮/最终成果_阅读版.xlsx">阅读版.xlsx</a> · <a href="../Gemini/第二轮/分析说明.md">分析说明</a></td><td>六系统配对</td></tr>
 </tbody>
 </table>
-<p class="muted">Gemini 的评分依据为“原始最终成果.xlsx”（7 张表）。“阅读版.xlsx”保留其中 6 张表，不含“06_空间分布与响应执法”，评分仍以原始文件为准。Claude 第一轮因Cursor宿主额度限制由Grok收尾，混合成品Q=81，独立R留空；第二轮无独立运行。Kimi 第一轮提前结束后退出，第二轮因重复读取循环终止，两轮均无完整成品。</p>
+<p class="muted">Gemini以原始最终成果.xlsx为评分依据；阅读版供查看。Claude第一轮72分只评价接管前可归属的工作，Grok后续订正与重建单列；第二轮未运行。Kimi两轮均无完整成品，分数留空。</p>
 </section>
 
 <section class="panel" id="reproduce">
 <h2 style="margin-top:0">复现</h2>
-<p><code>benchmark.sqlite → 评测数据处理.py → 生成分析表.py → 项目2_AI评测分析.xlsx</code></p>
-<p><a href="01_评测数据整理与验收.ipynb">Notebook</a> · <a href="../资料/复现说明.md">复现说明</a> · <a href="../资料/数据采集方案.md">数据采集方案</a> · <a href="../资料/评判标准.md">评判标准</a></p>
+<p><code>原始作品与运行记录 → 评分与用量S分项 → 评测总览、分维度比较、评分细项 → Word／PDF报告</code></p>
+<p><a href="../资料/复现说明.md">复现说明</a> · <a href="../input/data_manifest.json">原始数据清单</a></p>
 </section>
 </main>
 </html>

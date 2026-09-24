@@ -23,12 +23,35 @@ def load_core():
     return module
 
 
+def retain_current_assessment(evidence):
+    """保留人工核定的现行S评分及运行说明。"""
+    path = ROOT / "交付成果" / "查证数据.js"
+    if not path.exists():
+        return
+    payload = path.read_text(encoding="utf-8-sig")
+    current = json.loads(payload.split("=", 1)[1].rstrip(";\n\r "))
+    for key, value in current.items():
+        if value.get("现行评分版本") == "S v2.2":
+            evidence[key] = value
+        elif "现行S关联评分" in value:
+            evidence.setdefault(key, {})["现行S关联评分"] = value["现行S关联评分"]
+        elif key in evidence and "现行S说明" in value:
+            evidence[key]["现行S说明"] = value["现行S说明"]
+    for key, value in evidence.items():
+        if key.startswith("RUN:"):
+            if "本次Gate裁定" in value:
+                value["历史Gate裁定（旧口径，不用于现行S配对）"] = value.pop("本次Gate裁定")
+            if "评分版本" in value:
+                value["历史评分版本"] = value.pop("评分版本")
+
+
 def run(database=DEFAULT_DB):
     """整理评测数据并刷新查证入口。"""
     core = load_core()
     before_hash = hashlib.sha256(database.read_bytes()).hexdigest()
 
     tables, evidence, _, sql_queries = core.extract(database)
+    retain_current_assessment(evidence)
     field_rows = core.build_field_dictionary_rows(tables)
     evidence_page, evidence_payload = core.write_evidence_page(evidence)
 
@@ -70,6 +93,7 @@ def main():
     core = load_core()
     if args.evidence:
         _, evidence, _, _ = core.extract(args.database)
+        retain_current_assessment(evidence)
         if args.evidence not in evidence:
             raise ValueError("不存在此证据编号")
         print(json.dumps(evidence[args.evidence], ensure_ascii=False, indent=2))

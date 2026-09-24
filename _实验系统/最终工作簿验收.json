@@ -1,0 +1,82 @@
+{
+  "workbook": "D:\\项目2\\交付成果\\项目2_AI评测分析.xlsx",
+  "sha256": "ad96fd301f605fe0613bb5c37f05f30d640bab01589f6d99e58f290608606abe",
+  "sheet_names": [
+    "评测总览",
+    "评分细项",
+    "单AI分析",
+    "分维度比较",
+    "运行记录",
+    "评分与用量",
+    "API计价",
+    "行为记录",
+    "核验记录",
+    "字段说明"
+  ],
+  "score_items": 325,
+  "score_comments": 325,
+  "score_evidence_ids": 325,
+  "charts": 8,
+  "report_pages": {
+    "full": 34,
+    "overview": 7
+  },
+  "selectors": {
+    "评分细项": [
+      {
+        "range": "B2",
+        "formula": "\"GPT,Grok,DeepSeek,GLM,Qwen,Gemini,Claude,Kimi\""
+      }
+    ],
+    "分维度比较": [
+      {
+        "range": "B3",
+        "formula": "\"第一轮,第二轮,两轮变化\""
+      },
+      {
+        "range": "F3",
+        "formula": "\"得分,得分率\""
+      }
+    ]
+  },
+  "verification": "Native Excel: 8 AI totals, 16 single views, 6 dimension combinations. Native Word export: all 41 pages compared; 38 unchanged, changed pages 3/27 and overview 7 visually checked.",
+  "old_files": "retained per user instruction",
+  "report_editorial_review": {
+    "scope": "完整稿与概览逐步展开任务、工作事实、核查和评价，减少预设结论及抽象措辞。",
+    "preserved": "评分、图表、样式、章节和原分页保持；仅修改正文文字。",
+    "pages": {
+      "full": 34,
+      "overview": 7
+    },
+    "visual_check": "41页导出画面已逐页查看，无新增孤页、溢出或重叠。",
+    "full_docx_sha256": "35e31f9a4a1ba645115e4a7ffae4dfd4f64f82715b5779d5a0bbb76f33cb9375",
+    "full_pdf_sha256": "dc7334572dd052e9907e4237405eb1db280934be25018032f78cdaff24e6ca04",
+    "overview_pdf_sha256": "7a991331555f732c993410dbd0d53cc9f315cc2a1d72d96791716fe128c6d759"
+  },
+  "report_terms_review": {
+    "scope": "解释S、A至F、25项编号、档位、阈值、空白、费用、AWR及数据与工具术语。",
+    "preserved": "评分、图表、样式、章节和原分页保持；补充正文及附录说明。",
+    "pages": {
+      "full": 34,
+      "overview": 7
+    },
+    "visual_check": "41页完成画面对照，26页变化已查看，其余15页画面一致；无新增孤页、溢出或重叠。",
+    "full_docx_sha256": "36880443828fd919bc3bab5f92301f1d9f315ae70d3d4be79f60c2bed249a697",
+    "full_pdf_sha256": "440334db1a7ad070f299ff3010f9ee68f0f5170775a7bec567e6991f9e8cb4d1",
+    "overview_pdf_sha256": "402be6ad41645d6e4eecde9e728a6997f6d26a6219097c8dac88fdfc42de6200"
+  },
+  "final_review": {
+    "model": "Kimi两轮均为kimi-k3",
+    "score_items_verified": 325,
+    "comments_verified": 325,
+    "links": "开始阅读的本地链接全部存在",
+    "native_excel": "8个AI评分，16个单AI状态，6种分维度组合均通过",
+    "report_pages": [
+      34,
+      7
+    ],
+    "visual": "11页变化已检查，其余30页与上版画面一致",
+    "format": "Excel仅3个型号说明单元格内容更新，原样式、公式、下拉、图表保留",
+    "status": "完成"
+  }
+}

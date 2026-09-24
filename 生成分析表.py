@@ -1747,7 +1747,7 @@ def _polish_charts(wb):
                     titles = {
                         1: "成果质量与可靠性",
                         2: "完成耗时（分钟）",
-                        3: "API目录价（低档，元）" if sheet_name == "评测总览" else "Token 构成",
+                        3: "费用参考值（元）" if sheet_name == "评测总览" else "Token 构成",
                         4: "无收益动作占比（AWR）" if sheet_name == "评测总览" else "动作构成",
                     }
                     ch.ChartTitle.Text = titles.get(i, ch.ChartTitle.Text)
@@ -1877,7 +1877,7 @@ def apply_report_updates(wb):
 
     add_single_bar(
         overview,
-        "API目录价（低档，元）",
+        "费用参考值（元）",
         "'评测总览'!$B$9:$B$14",
         "'评测总览'!$Z$9:$Z$14",
         "B30", "K36",
@@ -2040,9 +2040,9 @@ def refresh_data_com(wb, tables, field_rows):
     ws.Range(f"O2:O{last}").FillDown()
     ws.Range("P2").Formula = '=IF(COUNTIFS(评分与用量!$H:$H,J2,评分与用量!$C:$C,"Token用量",评分与用量!$D:$D,"<>推理Token（输出子集）")=4,SUMIFS(评分与用量!$E:$E,评分与用量!$H:$H,J2,评分与用量!$C:$C,"Token用量",评分与用量!$D:$D,"<>推理Token（输出子集）"),"")'
     ws.Range(f"P2:P{last}").FillDown()
-    ws.Range("Q2").Formula = '=IF(COUNTIFS(API计价!$L:$L,J2,API计价!$D:$D,"低")=4,SUMIFS(API计价!$J:$J,API计价!$L:$L,J2,API计价!$D:$D,"低"),"")'
+    ws.Range("Q2").Formula = '=IF(COUNTIFS(评分与用量!$H:$H,J2,评分与用量!$C:$C,"原生计价",评分与用量!$D:$D,"费用低")=1,SUMIFS(评分与用量!$E:$E,评分与用量!$H:$H,J2,评分与用量!$C:$C,"原生计价",评分与用量!$D:$D,"费用低"),IF(COUNTIFS(API计价!$L:$L,J2,API计价!$D:$D,"低")=4,SUMIFS(API计价!$J:$J,API计价!$L:$L,J2,API计价!$D:$D,"低"),""))'
     ws.Range(f"Q2:Q{last}").FillDown()
-    ws.Range("R2").Formula = '=IF(COUNTIFS(API计价!$L:$L,J2,API计价!$D:$D,"高")=4,SUMIFS(API计价!$J:$J,API计价!$L:$L,J2,API计价!$D:$D,"高"),"")'
+    ws.Range("R2").Formula = '=IF(COUNTIFS(评分与用量!$H:$H,J2,评分与用量!$C:$C,"原生计价",评分与用量!$D:$D,"费用高")=1,SUMIFS(评分与用量!$E:$E,评分与用量!$H:$H,J2,评分与用量!$C:$C,"原生计价",评分与用量!$D:$D,"费用高"),IF(COUNTIFS(API计价!$L:$L,J2,API计价!$D:$D,"高")=4,SUMIFS(API计价!$J:$J,API计价!$L:$L,J2,API计价!$D:$D,"高"),""))'
     ws.Range(f"R2:R{last}").FillDown()
     resize_table(ws, "tblRuns", f"A1:R{last}")
 
@@ -2654,6 +2654,8 @@ def publish():
         sys.path.insert(0,str(ROOT / '_实验系统/报告素材'))
         from 应用最终裁定 import apply as apply_final_adjudication
         apply_final_adjudication(wb)
+        from 同步原生数据 import apply as apply_native_facts
+        apply_native_facts(wb)
         qa['print_areas']['评测总览']=wb.Worksheets('评测总览').PageSetup.PrintArea
         success = True
     finally:
@@ -2682,4 +2684,4 @@ def publish():
     print(json.dumps(qa, ensure_ascii=False))
 
 if __name__ == "__main__":
-    publish()
+    raise SystemExit("此入口属于旧Q/R整表生成流程，已停用以保护现行S评分和手工排版。请按资料/复现说明.md维护交付成果/项目2_AI评测分析.xlsx。")
