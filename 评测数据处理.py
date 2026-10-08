@@ -1,6 +1,6 @@
 """评测数据整理入口。
 
-输入：正式Excel的S分项及批注；SQLite保留运行、用量和旧评分记录。
+输入：正式Excel的S分项及批注；需要时从SQLite读取运行与用量。现行评分只取 S v2.2。
 输出：查证页、取数 SQL 和当前表结构。
 """
 
@@ -185,14 +185,14 @@ def retain_current_assessment(evidence):
             evidence[key]["现行S说明"] = value["现行S说明"]
     for key, value in evidence.items():
         if key.startswith("RUN:"):
-            if "本次Gate裁定" in value:
-                value["历史Gate裁定（旧口径，不用于现行S配对）"] = value.pop("本次Gate裁定")
+            # 已停用的门禁裁定不再写入查证页。
+            value.pop("本次Gate裁定", None)
             if "评分版本" in value:
                 value["历史评分版本"] = value.pop("评分版本")
 
 
 def run(database=DEFAULT_DB):
-    """从内部SQLite刷新历史采集记录，再叠加正式Excel的S评分。"""
+    """从内部SQLite刷新运行采集记录，再叠加正式Excel的 S v2.2。"""
     core = load_core()
     before_hash = hashlib.sha256(database.read_bytes()).hexdigest()
 
@@ -203,7 +203,7 @@ def run(database=DEFAULT_DB):
     evidence_page, evidence_payload = core.write_evidence_page(evidence)
 
     manifest = {
-        "source": "SQLite历史采集与旧Q/R表；现行S评分取正式Excel，不从这些表重建工作簿",
+        "source": "SQLite运行采集；现行S v2.2取正式Excel，不从采集表重建工作簿",
         "tables": {name: len(rows) for name, rows in tables},
         "field_dictionary_rows": len(field_rows),
     }
@@ -234,7 +234,7 @@ def run(database=DEFAULT_DB):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--refresh-telemetry", action="store_true", help="需要内部SQLite：刷新历史采集记录并叠加现行S评分")
+    parser.add_argument("--refresh-telemetry", action="store_true", help="需要内部SQLite：刷新运行采集记录并叠加现行S v2.2")
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
     parser.add_argument("--evidence", help="查询证据编号")
     parser.add_argument("--sync-scores", action="store_true", help="从正式Excel同步325条S得分和批注到查证数据")

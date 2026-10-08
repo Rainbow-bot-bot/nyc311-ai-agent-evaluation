@@ -40,7 +40,7 @@
     ]
   },
   "verification": "Native Excel: 8 AI totals, 16 single views, 6 dimension combinations. Native Word export: all 41 pages compared; 38 unchanged, changed pages 3/27 and overview 7 visually checked.",
-  "old_files": "retained per user instruction",
+  "old_files": "已从现行仓库删除",
   "report_editorial_review": {
     "scope": "完整稿与概览逐步展开任务、工作事实、核查和评价，减少预设结论及抽象措辞。",
     "preserved": "评分、图表、样式、章节和原分页保持；仅修改正文文字。",
@@ -95,89 +95,36 @@
       "资料/评判标准.md": "b2e40d949f0c8edbd878cd1012d1a6f4b55d8e1dd9a54824a50d783a138a05ed",
       "资料/复现说明.md": "75a3cc3945fdc71835f6614887d4e4086a46bacfd1061c3b3544de3c83a28f60",
       "交付成果/01_评测数据整理与验收.ipynb": "195d952c08b7f56499407d510f4b3c158189f7bf2108fc081fa91aa463a5ed53",
-      "交付成果/查证数据.js": "1420d93bb67f643c72d81769740f776da014c05ba82c6113295e28258338c736",
-      "_实验系统/报告素材/最终评分裁定.json": "2fc5a856379b61a2122f5c308e9cdf5bc825c71ae63b4e8c2a6ebdede0093c5a",
-      "_实验系统/报告素材/历史_评判标准_v1_20260916.md": "24f4867b1c78c46f5429dda7be9c531bec6af63dedd0dc4e017c12c3f45d9887",
-      "_实验系统/报告素材/历史_QR评测验收.ipynb": "4478b3d59792194fde9da3127777906e7383734dfdca516c555f65f719040215"
+      "交付成果/查证数据.js": "1420d93bb67f643c72d81769740f776da014c05ba82c6113295e28258338c736"
     }
   },
   "execution_entry_review": {
     "date": "2026-09-24",
-    "scope": "仓库全部77个脚本/Notebook/命令入口及当前维护引用；58个原始参赛作品保持原样",
+    "scope": "现行入口、采集核心与原始参赛作品。2026-09-24验收后已删除的旧评分和旧生成文件不再列入；其余哈希仍是当时记录，未按本次整理重算。",
     "inventory": [
       {
-        "path": "_实验系统/报告素材/历史_QR评测验收.ipynb",
-        "role": "历史验收",
-        "sha256": "4478b3d59792194fde9da3127777906e7383734dfdca516c555f65f719040215"
-      },
-      {
-        "path": "_实验系统/报告素材/导出报告图表.py",
-        "role": "已停用历史生成代码",
-        "sha256": "2d84e1c7740ff4bf4c4779a75f35d1510ee2519d80e4d36486fc3eb837705810"
-      },
-      {
         "path": "_实验系统/报告素材/导出本轮报告.py",
-        "role": "现行入口或历史采集核心",
+        "role": "现行入口",
         "sha256": "1ac9857ec7470c3bc6ebbe72edce31a3a80b1098f9cadcfe70f66b5e91d964ce"
       },
       {
-        "path": "_实验系统/报告素材/应用最终裁定.py",
-        "role": "已停用历史生成代码",
-        "sha256": "08ea151b9dfc0de5f01eab0cfb5b02253a46ba620e89f06c19f5e3afd9e71e30"
-      },
-      {
         "path": "_实验系统/报告素材/报告字体.py",
-        "role": "现行入口或历史采集核心",
+        "role": "现行入口",
         "sha256": "b9d95ad083916d725ab17a888c5108e14d9e017219cd2288ba9584ba6959edcc"
       },
       {
         "path": "_实验系统/报告素材/终审.py",
-        "role": "现行入口或历史采集核心",
+        "role": "现行入口",
         "sha256": "fce5cce0b687fe6a4a4bb051576335baf892d19acab73b0706914751208c3bd1"
       },
       {
         "path": "_实验系统/报告素材/终审交互.py",
-        "role": "现行入口或历史采集核心",
+        "role": "现行入口",
         "sha256": "9dbed4badba2c72856333c61df90b3a60c18362b1acfb3bafca349efe9d46396"
       },
       {
-        "path": "_实验系统/报告素材/终审判定.py",
-        "role": "已停用历史生成代码",
-        "sha256": "d60698834e4145c09083eb24b895b357e48465b269532f5f2807117a973361f6"
-      },
-      {
-        "path": "_实验系统/报告素材/统一数据表格式.py",
-        "role": "已停用历史生成代码",
-        "sha256": "a22d5e094c1001fa8dd83e6615e82cdc8aba26785e508daad7b076781df8297e"
-      },
-      {
-        "path": "_实验系统/报告素材/编排简洁报告.py",
-        "role": "已停用历史生成代码",
-        "sha256": "574d45f46fed6b2c239cdf9e940c8d88ffc635e49606336da63a129140449896"
-      },
-      {
-        "path": "_实验系统/报告素材/编排详细报告.py",
-        "role": "已停用历史生成代码",
-        "sha256": "cd74e5be7a4bde110ecc6b9d106763a5a429662e8547ebc1425981826b3332a3"
-      },
-      {
-        "path": "_实验系统/报告素材/补充评分细项.py",
-        "role": "已停用历史生成代码",
-        "sha256": "8936eb623fdf33a49f9dda6756a1ea0c74c04f1d5ffbf36ae86babc06c432008"
-      },
-      {
-        "path": "_实验系统/报告素材/补充运行条件.py",
-        "role": "已停用历史生成代码",
-        "sha256": "362de5127192db9ff61827470b3c52d35d17d28c90ec9d10a7a86763178049fc"
-      },
-      {
-        "path": "_实验系统/报告素材/语言格式修正.py",
-        "role": "已停用历史生成代码",
-        "sha256": "8ec26da7add262b0e3271b52d8a95807e08282086a545b9e78e6f4af55c0b20c"
-      },
-      {
         "path": "_实验系统/评测数据处理核心.py",
-        "role": "现行入口或历史采集核心",
+        "role": "现行入口",
         "sha256": "a37c7a17de432f71b5e51050306b1cee5e7735469440e8e4e0eea2656e3b8842"
       },
       {
@@ -472,28 +419,23 @@
       },
       {
         "path": "交付成果/01_评测数据整理与验收.ipynb",
-        "role": "现行入口或历史采集核心",
+        "role": "现行入口",
         "sha256": "195d952c08b7f56499407d510f4b3c158189f7bf2108fc081fa91aa463a5ed53"
       },
       {
-        "path": "生成分析表.py",
-        "role": "已停用历史生成代码",
-        "sha256": "8b5afddc36c07d6136ca4817ef2f4334e4dd8735fa8d9df82d9886990b9cc19e"
-      },
-      {
         "path": "评测数据处理.py",
-        "role": "现行入口或历史采集核心",
+        "role": "现行入口",
         "sha256": "401cae1ada953395538c2e28288f14aaeae183f6ae5513055f39d8e08195f67a"
       },
       {
         "path": "运行数据处理.cmd",
-        "role": "现行入口或历史采集核心",
+        "role": "现行入口",
         "sha256": "c5d250d0d771a0c180dffadfcf1100f2e8bd7508edd7afb4e4a19c8bc250df8c"
       }
     ],
     "legacy_writers": {
-      "count": 10,
-      "check": "直接执行和导入均在依赖加载与写入前停止"
+      "count": 0,
+      "check": "旧Q/R整表生成脚本已从仓库删除；现行入口只同步和核对S v2.2，不重建Excel"
     },
     "current_pipeline": "默认同步、--check-scores、--evidence及核心直接入口均执行通过",
     "sqlite_refresh": "真实内部SQLite只读提取后，在隔离副本写出；325条S分项与依据一致，SQLite及查证HTML哈希不变",
@@ -508,16 +450,6 @@
     "pdf_export": "当前Word副本实际导出34+7页，逐页文字与正式PDF一致，实例已退出",
     "boundaries": "原始参赛脚本只做范围及语法扫描，未重跑参赛分析；历史过程代码未改作现行评分；最终Excel和报告未改写",
     "files_sha256": {
-      "生成分析表.py": "8b5afddc36c07d6136ca4817ef2f4334e4dd8735fa8d9df82d9886990b9cc19e",
-      "_实验系统/报告素材/应用最终裁定.py": "08ea151b9dfc0de5f01eab0cfb5b02253a46ba620e89f06c19f5e3afd9e71e30",
-      "_实验系统/报告素材/编排详细报告.py": "cd74e5be7a4bde110ecc6b9d106763a5a429662e8547ebc1425981826b3332a3",
-      "_实验系统/报告素材/编排简洁报告.py": "574d45f46fed6b2c239cdf9e940c8d88ffc635e49606336da63a129140449896",
-      "_实验系统/报告素材/补充运行条件.py": "362de5127192db9ff61827470b3c52d35d17d28c90ec9d10a7a86763178049fc",
-      "_实验系统/报告素材/补充评分细项.py": "8936eb623fdf33a49f9dda6756a1ea0c74c04f1d5ffbf36ae86babc06c432008",
-      "_实验系统/报告素材/统一数据表格式.py": "a22d5e094c1001fa8dd83e6615e82cdc8aba26785e508daad7b076781df8297e",
-      "_实验系统/报告素材/语言格式修正.py": "8ec26da7add262b0e3271b52d8a95807e08282086a545b9e78e6f4af55c0b20c",
-      "_实验系统/报告素材/导出报告图表.py": "2d84e1c7740ff4bf4c4779a75f35d1510ee2519d80e4d36486fc3eb837705810",
-      "_实验系统/报告素材/终审判定.py": "d60698834e4145c09083eb24b895b357e48465b269532f5f2807117a973361f6",
       "_实验系统/报告素材/终审.py": "fce5cce0b687fe6a4a4bb051576335baf892d19acab73b0706914751208c3bd1",
       "_实验系统/报告素材/终审交互.py": "9dbed4badba2c72856333c61df90b3a60c18362b1acfb3bafca349efe9d46396",
       "评测数据处理.py": "401cae1ada953395538c2e28288f14aaeae183f6ae5513055f39d8e08195f67a",

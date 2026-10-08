@@ -1,10 +1,9 @@
-"""历史SQLite采集整理：extract返回旧Q/R底表，仅供原始记录追溯。
-现行S评分及主工作簿由根目录评测数据处理.py维护；禁止用extract重建正式Excel。
+"""从内部SQLite整理运行、动作和核验记录。
+现行 S v2.2 及主工作簿由根目录评测数据处理.py维护；禁止用extract重建正式Excel。
 """
 
 from pathlib import Path
 from copy import deepcopy
-import argparse
 import hashlib
 import importlib.util
 import json
@@ -760,36 +759,6 @@ def _internal_dictionary():
     }
 
 
-# 1. 从冻结 SQLite 提取运行、动作和核验的原始结构。
-def final_adjudication(tables, evidence):
-    path = ROOT / '_实验系统/报告素材/最终评分裁定.json'
-    ruling = json.loads(path.read_text(encoding='utf8'))
-    data = dict(tables)
-    for row in data['评分与用量']:
-        code = row['指标'].split()[0]
-        if row['AI']=='GPT' and row['轮次']=='第二轮' and code in ('C2','C4'):
-            assert row['数值']==ruling['GPT'][code]['原分'], '裁定对应的原评分已变更'
-            old = deepcopy(evidence[row['证据编号']])
-            row['数值'] = ruling['GPT'][code]['新分']
-            row['数据版本'] = ruling['版本']
-            evidence[row['证据编号']] = {'原评分':old,'本次裁定':ruling['GPT'][code],'裁定来源':str(path),'裁定SHA256':h(path.read_bytes())}
-    parent = next(r for r in data['运行记录'] if r['AI']=='Qwen' and r['轮次']=='第二轮')
-    template = next(r for r in data['评分与用量'] if r['参与编号']==parent['参与编号'])
-    original=sum(r['数值'] for r in data['评分与用量'] if r['参与编号']==parent['参与编号'] and r['指标类别']=='质量分项')
-    assert original==ruling['Qwen']['原分项合计'] and original+ruling['Qwen']['调整']==min(original,ruling['Qwen']['封顶'])
-    cap = {k:None for k in template}
-    cap.update({'AI':'Qwen','轮次':'第二轮','指标类别':'质量封顶','指标':'Q_CAP 错误时间窗主线封顶调整','数值':ruling['Qwen']['调整'],'单位':'分','数据版本':ruling['版本'],'参与编号':parent['参与编号'],'运行编号':parent['运行编号'],'指标编号':'final-Qwen-cap','证据编号':'REVIEW:Qwen:CAP'})
-    data['评分与用量'].append(cap)
-    evidence[cap['证据编号']] = ruling['Qwen']
-    for row in data['运行记录']:
-        if row['AI']=='Gemini' and row['轮次']=='第二轮':
-            row['参与类别']='补充观察'
-            row['评分状态']='观察评分'
-            evidence[row['证据编号']]['本次Gate裁定']=ruling['Gemini']
-    evidence['REVIEW:final_20260921'] = ruling
-    return [(name,data[name]) for name,_ in tables]
-
-
 def extract(db):
     """读取原库，依次完成基础整理、样本筛选和指标派生。"""
     connection = _open_database(db)
@@ -843,7 +812,6 @@ def extract(db):
             connection,
         )
         tables = split_api_pricing(tables)
-        tables = final_adjudication(tables, evidence)
 
         return (
             tables,
@@ -2558,50 +2526,6 @@ def main():
     sys.path.insert(0, str(ROOT))
     import 评测数据处理 as current_pipeline
     return current_pipeline.main()
-    # 以下保留旧入口代码供追溯，不再执行。
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        '--database',
-        type=Path,
-        default=ROOT / '_实验系统/telemetry/benchmark.sqlite',
-    )
-    parser.add_argument('--evidence')
-    args = parser.parse_args()
-
-    before = h(args.database.read_bytes())
-    tables, evidence, _, queries = extract(args.database)
-    assert before == h(args.database.read_bytes()), '原数据库发生变化'
-
-    if args.evidence:
-        if args.evidence not in evidence:
-            raise ValueError('不存在此证据ID')
-        print(json.dumps(evidence[args.evidence], ensure_ascii=False, indent=2))
-        return
-
-    write_evidence_page(evidence)
-    field_rows = build_field_dictionary_rows(tables)
-    manifest = {
-        'tables': {name: len(rows) for name, rows in tables},
-        'field_dictionary_rows': len(field_rows),
-    }
-
-    (ROOT / '_实验系统/当前导出.json').write_text(
-        json.dumps(manifest, ensure_ascii=False, indent=2),
-        encoding='utf-8',
-    )
-    (ROOT / '_实验系统/sql/分析取数.sql').write_text(
-        '\n'.join(queries),
-        encoding='utf-8',
-    )
-
-    print(json.dumps({
-        **manifest,
-        'evidence_shell_bytes': (ROOT / '交付成果/查证.html').stat().st_size,
-        'evidence_payload_bytes': (ROOT / '交付成果/查证数据.js').stat().st_size,
-        'sql_database_sha256': before,
-        'sql_unchanged': True,
-        'no_model_calls': True,
-    }, ensure_ascii=False))
 
 
 if __name__ == '__main__':
