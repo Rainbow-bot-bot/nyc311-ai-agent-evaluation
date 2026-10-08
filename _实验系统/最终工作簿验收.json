@@ -82,7 +82,7 @@
   "maintenance_sync_review": {
     "date": "2026-09-24",
     "based_on_commit": "41385ff7",
-    "scope": "现行标准、Notebook验收、Excel到查证数据同步和首页链接",
+    "scope": "评分标准、Notebook验收、Excel到查证数据同步和首页链接",
     "scores": 325,
     "notebook": "10个代码单元从头执行完成，保存实际输出；运行记录缓存和六维总分对账通过",
     "evidence": "325个评分编号逐字段一致，共享问题编号关联同步",
@@ -435,7 +435,7 @@
     ],
     "legacy_writers": {
       "count": 0,
-      "check": "旧Q/R整表生成脚本已从仓库删除；现行入口只同步和核对S v2.2，不重建Excel"
+      "check": "已停用的整表生成脚本已从仓库删除；入口只同步和核对评分标准，不重建Excel"
     },
     "current_pipeline": "默认同步、--check-scores、--evidence及核心直接入口均执行通过",
     "sqlite_refresh": "真实内部SQLite只读提取后，在隔离副本写出；325条S分项与依据一致，SQLite及查证HTML哈希不变",

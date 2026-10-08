@@ -1,6 +1,6 @@
 """评测数据整理入口。
 
-输入：正式Excel的S分项及批注；需要时从SQLite读取运行与用量。现行评分只取 S v2.2。
+输入：正式Excel的S分项及批注；需要时从SQLite读取运行与用量。评分只取评分标准。
 输出：查证页、取数 SQL 和当前表结构。
 """
 
@@ -32,7 +32,7 @@ def read_current_scores(workbook=None):
     criteria = {code: float(maximum) for code, maximum in re.findall(
         r"^\| ([A-F]\d+) [^|]+\|\s*([0-9.]+)\s*\|", standard, re.M)}
     if len(criteria) != 25 or sum(criteria.values()) != 100:
-        raise ValueError("现行标准应包含25项，满分合计100")
+        raise ValueError("评分标准应包含25项，满分合计100")
     fields = {"实际工作与缺口": "实际完成与缺口", "原件": "原件目录",
               "核查依据": "依据", "核查方式": "核查方式", "评测方补做": "评测方补做"}
     book = load_workbook(workbook, data_only=True)
@@ -64,11 +64,11 @@ def read_current_scores(workbook=None):
             heading = re.fullmatch(r"(.+?)；得分\s*([0-9.]+)/([0-9.]+)", labels.get("评分项", ""))
             if not heading or heading[1] != row[3].value or float(heading[2]) != value or float(heading[3]) != maximum:
                 raise ValueError(f"{key} 单元格与批注首行的评分项或分数不一致")
-            item = {"AI": ai, "轮次": rd, "量表": "v2.2", "条款": code,
+            item = {"AI": ai, "轮次": rd, "量表": "评分标准", "条款": code,
                     "评分项": row[3].value.split(" ", 1)[1], "满分": maximum,
                     "档位": value / maximum, "得分": value, "状态": "已评"}
             item.update({target: labels[label] for label, target in fields.items()})
-            scores[key] = {"现行评分版本": "S v2.2", "评分原文": item,
+            scores[key] = {"评分标准": "评分标准", "评分原文": item,
                            "关联问题编号": issue, "来源": "交付成果/项目2_AI评测分析.xlsx：评分与用量",
                            "Excel得分批注": comment}
     finally:
@@ -88,7 +88,7 @@ def load_evidence(path=None):
 
 def validate_issue_references(evidence, scores):
     """外部问题须先登记证据，关联评分或编号元数据本身不算证据。"""
-    metadata = {"现行S关联评分", "来源", "原库表", "主键", "现行评分版本", "现行S说明"}
+    metadata = {"现行S关联评分", "来源", "原库表", "主键", "评分标准", "现行S说明"}
 
     def has_content(value):
         if isinstance(value, dict):
@@ -135,7 +135,7 @@ def verify_current_scores(evidence=None, scores=None):
     scores = scores if scores is not None else read_current_scores()
     evidence = evidence if evidence is not None else load_evidence()
     validate_issue_references(evidence, scores)
-    actual_keys = {k for k, v in evidence.items() if v.get("现行评分版本") == "S v2.2"}
+    actual_keys = {k for k, v in evidence.items() if v.get("评分标准") == "评分标准"}
     if actual_keys != set(scores):
         raise ValueError("查证页的现行评分编号集合与Excel不一致")
     for key, expected in scores.items():
@@ -150,7 +150,7 @@ def verify_current_scores(evidence=None, scores=None):
             linked = evidence.get(issue, {}).get("现行S关联评分", [])
             if expected["评分原文"] not in linked:
                 raise ValueError(f"{key} 未同步到共享问题编号 {issue}")
-    return {"评分条数": len(scores), "分值与依据": "逐字段一致", "评分机制": "S v2.2"}
+    return {"评分条数": len(scores), "分值与依据": "逐字段一致", "评分机制": "评分标准"}
 
 
 def sync_current_scores():
@@ -174,7 +174,7 @@ def retain_current_assessment(evidence):
     payload = path.read_text(encoding="utf-8-sig")
     current = json.loads(payload.split("=", 1)[1].rstrip(";\n\r "))
     for key, value in current.items():
-        if value.get("现行评分版本") == "S v2.2":
+        if value.get("评分标准") == "评分标准":
             evidence[key] = value
         elif "现行S关联评分" in value:
             # 人工登记的问题可能不在旧SQLite中，刷新时保留其完整证据。
@@ -192,7 +192,7 @@ def retain_current_assessment(evidence):
 
 
 def run(database=DEFAULT_DB):
-    """从内部SQLite刷新运行采集记录，再叠加正式Excel的 S v2.2。"""
+    """从内部SQLite刷新运行采集记录，再叠加正式Excel的评分标准。"""
     core = load_core()
     before_hash = hashlib.sha256(database.read_bytes()).hexdigest()
 
@@ -203,7 +203,7 @@ def run(database=DEFAULT_DB):
     evidence_page, evidence_payload = core.write_evidence_page(evidence)
 
     manifest = {
-        "source": "SQLite运行采集；现行S v2.2取正式Excel，不从采集表重建工作簿",
+        "source": "SQLite运行采集；评分标准取正式Excel，不从采集表重建工作簿",
         "tables": {name: len(rows) for name, rows in tables},
         "field_dictionary_rows": len(field_rows),
     }
@@ -234,7 +234,7 @@ def run(database=DEFAULT_DB):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--refresh-telemetry", action="store_true", help="需要内部SQLite：刷新运行采集记录并叠加现行S v2.2")
+    parser.add_argument("--refresh-telemetry", action="store_true", help="需要内部SQLite：刷新运行采集记录并叠加评分标准")
     parser.add_argument("--database", type=Path, default=DEFAULT_DB)
     parser.add_argument("--evidence", help="查询证据编号")
     parser.add_argument("--sync-scores", action="store_true", help="从正式Excel同步325条S得分和批注到查证数据")

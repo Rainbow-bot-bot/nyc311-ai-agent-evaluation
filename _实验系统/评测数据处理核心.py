@@ -1,5 +1,5 @@
 """从内部SQLite整理运行、动作和核验记录。
-现行 S v2.2 及主工作簿由根目录评测数据处理.py维护；禁止用extract重建正式Excel。
+评分标准及主工作簿由根目录评测数据处理.py维护；禁止用extract重建正式Excel。
 """
 
 from pathlib import Path
